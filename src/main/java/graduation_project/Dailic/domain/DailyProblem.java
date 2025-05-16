@@ -1,0 +1,34 @@
+package graduation_project.Dailic.domain;
+
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+public class DailyProblem {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Problem problem;
+
+    // 출제된 날짜
+    @Column(nullable = false)
+    private LocalDate date;
+
+    // 1~20번 문제 순서
+    @Column(nullable = false)
+    private int sequenceNumber;
+}
