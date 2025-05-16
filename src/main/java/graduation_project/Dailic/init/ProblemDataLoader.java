@@ -1,4 +1,18 @@
-﻿@Component
+package graduation_project.Dailic.init;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import graduation_project.Dailic.domain.Problem;
+import graduation_project.Dailic.repository.ProblemRepository;
+import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+@Component
 @RequiredArgsConstructor
 public class ProblemDataLoader {
 
