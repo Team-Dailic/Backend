@@ -40,4 +40,14 @@ public class UserProblemStatus {
     @Column(nullable = false)
     private LocalDateTime answeredAt;
 
+    public UserProblemStatus(User user, Problem problem, Boolean isCorrect, Boolean isScraped,
+                             String userAnswer, Boolean isRetried, LocalDateTime answeredAt) {
+        this.user = user;
+        this.problem = problem;
+        this.isCorrect = isCorrect;
+        this.isScraped = isScraped;
+        this.userAnswer = userAnswer;
+        this.isRetried = isRetried;
+        this.answeredAt = answeredAt;
+    }
 }

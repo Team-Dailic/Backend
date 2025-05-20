@@ -1,12 +1,10 @@
 package graduation_project.Dailic.controller;
 
-import graduation_project.Dailic.DTO.ProblemDto;
+import graduation_project.Dailic.controller.DTO.ProblemDto;
 import graduation_project.Dailic.service.ProblemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

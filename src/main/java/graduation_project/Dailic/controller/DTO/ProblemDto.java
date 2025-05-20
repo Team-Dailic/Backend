@@ -1,4 +1,4 @@
-package graduation_project.Dailic.DTO;
+package graduation_project.Dailic.controller.DTO;
 
 import graduation_project.Dailic.domain.Problem;
 import lombok.Getter;
