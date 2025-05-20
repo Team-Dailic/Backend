@@ -21,4 +21,7 @@ public class Problem {
     private String option5;
 
     private String correctAnswer;
+
+    // 해설 필드 추가
+    private String solution;
 }
