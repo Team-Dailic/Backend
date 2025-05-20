@@ -1,7 +1,7 @@
 package graduation_project.Dailic.service;
 
 
-import graduation_project.Dailic.DTO.ProblemDto;
+import graduation_project.Dailic.controller.DTO.ProblemDto;
 import graduation_project.Dailic.domain.Problem;
 import graduation_project.Dailic.repository.ProblemRepository;
 import lombok.RequiredArgsConstructor;
