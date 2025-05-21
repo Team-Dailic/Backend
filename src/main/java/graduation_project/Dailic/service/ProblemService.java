@@ -34,6 +34,10 @@ public class ProblemService {
         return problemRepository.findById(id);
     }
 
+    public List<Problem> findRandomProblemEntities(int count) {
+        return problemRepository.findRandomProblems(count);
+    }
+
     // 문제 삭제
     @Transactional
     public void deleteProblem(Long id) {problemRepository.deleteById(id);}

@@ -1,17 +1,16 @@
 package graduation_project.Dailic.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter(AccessLevel.PUBLIC)
+@NoArgsConstructor
 @AllArgsConstructor
+
 public class DailyProblem {
 
     @Id
