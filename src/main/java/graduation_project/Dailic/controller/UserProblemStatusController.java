@@ -64,7 +64,12 @@ public class UserProblemStatusController {
     // 오답노트 문제 전체 조회
     @GetMapping("/wrong/{userId}")
     public ResponseEntity<List<UserProblemStatusResponseDto>> getWrongProblems(@PathVariable Long userId) {
-        User user = userService.getUserById(userId);
+        User user;
+        try{
+           user = userService.getUserById(userId);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
         List<UserProblemStatus> wrongList = userProblemStatusService.getIncorrectProblems(user);
         List<UserProblemStatusResponseDto> result = wrongList.stream()
                 .map(UserProblemStatusResponseDto::fromEntity)
@@ -97,7 +102,13 @@ public class UserProblemStatusController {
     // 스크랩 문제 전체 조회
     @GetMapping("/scrap/{userId}")
     public ResponseEntity<List<UserProblemStatusResponseDto>> getScrapedProblems(@PathVariable Long userId) {
-        User user = userService.getUserById(userId);
+        User user;
+        try{
+            user = userService.getUserById(userId);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+
         List<UserProblemStatus> scrapList = userProblemStatusService.getScrapedProblems(user);
         List<UserProblemStatusResponseDto> result = scrapList.stream()
                 .map(UserProblemStatusResponseDto::fromEntity)
