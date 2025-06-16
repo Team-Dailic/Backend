@@ -37,6 +37,23 @@ public class LicenseController {
         return ResponseEntity.ok(body);
     }
 
+    @PutMapping
+    public ResponseEntity<?> updateLicense(
+            @RequestParam Long userId,
+            @RequestBody LicenseSelectionRequestDto req) {
+        User user = userService.getUserById(userId);
+        LicenseSelection ls =
+                licenseService.updateLicense(user, req.getOccupation(), req.getLicense());
+        Map<String, Object> body = Map.of(
+                "userId", user.getId(),
+                "occupation", ls.getOccupation(),
+                "license", ls.getLicense(),
+                "status", "UPDATED",
+                "message", "학습 자격증이 변경되었습니다."
+        );
+        return ResponseEntity.ok(body);
+    }
+
     @GetMapping("/current")
     public ResponseEntity<CurrentLicenseDto> getCurrentLicense(@RequestParam Long userId) {
         CurrentLicenseDto dto = licenseService.getCurrentLicenseDto(userId);
