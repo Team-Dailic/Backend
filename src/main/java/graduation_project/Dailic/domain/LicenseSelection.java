@@ -23,7 +23,8 @@ public class LicenseSelection {
     private String license;
 
     @Column(nullable = false)
-    private String occupation;
+    @Enumerated(EnumType.STRING)
+    private Occupation occupation;
 
     private LocalDateTime createdAt;
 }
