@@ -17,8 +17,8 @@ public class ProblemController {
     public ResponseEntity<ProblemDto> getProblemById(
             @PathVariable Long id,
             @RequestParam(value = "withSolution", defaultValue = "false")
-            boolean whithSolution) {
-        ProblemDto problemDto = problemService.getProblemDtoById(id, whithSolution);
+            boolean withSolution) {
+        ProblemDto problemDto = problemService.getProblemDtoById(id, withSolution);
         return ResponseEntity.ok(problemDto);
     }
 }
