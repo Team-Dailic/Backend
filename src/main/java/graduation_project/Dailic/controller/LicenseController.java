@@ -1,5 +1,6 @@
 package graduation_project.Dailic.controller;
 
+import graduation_project.Dailic.controller.DTO.CurrentLicenseDto;
 import graduation_project.Dailic.controller.DTO.LicenseSelectionRequestDto;
 import graduation_project.Dailic.domain.LicenseSelection;
 import graduation_project.Dailic.domain.User;
@@ -34,5 +35,11 @@ public class LicenseController {
                 "message", "학습 자격증이 설정되었습니다."
         );
         return ResponseEntity.ok(body);
+    }
+
+    @GetMapping("/current")
+    public ResponseEntity<CurrentLicenseDto> getCurrentLicense(@RequestParam Long userId) {
+        CurrentLicenseDto dto = licenseService.getCurrentLicenseDto(userId);
+        return ResponseEntity.ok(dto);
     }
 }

@@ -6,8 +6,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Builder
 @Getter @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "problem_id"}))
 public class UserProblemStatus {

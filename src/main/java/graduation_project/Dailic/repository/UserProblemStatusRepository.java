@@ -4,6 +4,7 @@ import graduation_project.Dailic.domain.Problem;
 import graduation_project.Dailic.domain.User;
 import graduation_project.Dailic.domain.UserProblemStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +27,10 @@ public interface UserProblemStatusRepository extends JpaRepository<UserProblemSt
 
     // 유저가 스크랩한 문제 목록 조회
     List<UserProblemStatus> findByUserAndIsScrapedTrue(User user);
+
+    @Query("SELECT COUNT(u) FROM UserProblemStatus u WHERE u.user.id = :userId")
+    int countTotalProblemsByUserId(Long userId);
+
+    @Query("SELECT COUNT(u) FROM UserProblemStatus u WHERE u.user.id = :userId AND u.isCorrect = true")
+    int countSolvedProblemsByUserId(Long userId);
 }
