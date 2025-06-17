@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/problems")
@@ -14,11 +16,17 @@ public class ProblemController {
 
     //문제 단건 조회
     @GetMapping("/{id}")
-    public ResponseEntity<ProblemDto> getProblemById(
+    public ResponseEntity<?> getProblemById(
             @PathVariable Long id,
             @RequestParam(value = "withSolution", defaultValue = "false")
             boolean withSolution) {
         ProblemDto problemDto = problemService.getProblemDtoById(id, withSolution);
-        return ResponseEntity.ok(problemDto);
+        return ResponseEntity.ok(
+                Map.of(
+                        "status", 200,
+                        "message", "문제 단건 조회 성공,",
+                        "data", problemDto
+                )
+        );
     }
 }
