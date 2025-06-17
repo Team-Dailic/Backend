@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -94,6 +95,36 @@ public class DailyProblemController {
         }
 
         return ResponseEntity.ok("추가 문제 5개 생성 완료");
+    }
+
+    @GetMapping("/explanations")
+    public ResponseEntity<?> getTodayDailyProblems(@RequestParam Long userId) {
+        User user = userService.getUserById(userId);
+        LocalDate today = LocalDate.now();
+
+        //오늘의 문제 가져오기
+        List<DailyProblem> dailyProblems = dailyProblemService.getDailyProblemsForUser(user, today);
+        if (dailyProblems.isEmpty()) {
+            return ResponseEntity.status(409).body(
+                    Map.of(
+                            "status", 409,
+                            "message", "오늘의 문제가 존재하지 않습니다.",
+                            "data", null
+                    )
+            );
+        }
+
+        //문제들을 DTO로 변환 (해설 포함)
+        List<ProblemDto> result = dailyProblems.stream()
+                .map(dp -> ProblemDto.from(dp.getProblem(), true))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(
+                Map.of(
+                        "status", 200,
+                        "message", "오늘의 문제 해설 조회 성공",
+                        "data", result
+                )
+        );
     }
 
 }

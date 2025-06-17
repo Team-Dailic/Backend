@@ -3,6 +3,7 @@ package graduation_project.Dailic.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import graduation_project.Dailic.controller.DTO.LicenseSelectionRequestDto;
 import graduation_project.Dailic.domain.LicenseSelection;
+import graduation_project.Dailic.domain.Occupation;
 import graduation_project.Dailic.domain.User;
 import graduation_project.Dailic.service.LicenseService;
 import graduation_project.Dailic.service.UserService;
@@ -41,7 +42,7 @@ public class LicenseControllerTest {
         //given
         Long userId = 1L;
         LicenseSelectionRequestDto requestDto = new LicenseSelectionRequestDto();
-        requestDto.setOccupation("Backend Developer");
+        requestDto.setOccupation(Occupation.COMMON);
         requestDto.setLicense("정보처리기사");
 
         User mockUser = new User();
@@ -49,7 +50,7 @@ public class LicenseControllerTest {
 
         LicenseSelection mockSelection = LicenseSelection.builder()
                 .user(mockUser)
-                .occupation("Backend Developer")
+                .occupation(Occupation.COMMON)
                 .license("정보처리기사")
                 .build();
 
