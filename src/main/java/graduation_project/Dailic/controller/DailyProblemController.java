@@ -1,10 +1,14 @@
 package graduation_project.Dailic.controller;
 
 
+import graduation_project.Dailic.controller.DTO.ApiResponse;
 import graduation_project.Dailic.controller.DTO.ProblemDto;
+import graduation_project.Dailic.controller.DTO.SolvedProblemWithExplanationDto;
 import graduation_project.Dailic.domain.DailyProblem;
 import graduation_project.Dailic.domain.Problem;
 import graduation_project.Dailic.domain.User;
+import graduation_project.Dailic.domain.UserProblemStatus;
+import graduation_project.Dailic.repository.UserProblemStatusRepository;
 import graduation_project.Dailic.service.DailyProblemService;
 import graduation_project.Dailic.service.ProblemService;
 import graduation_project.Dailic.service.UserService;
@@ -13,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +29,7 @@ public class DailyProblemController {
     private final DailyProblemService dailyProblemService;
     private final ProblemService problemService;
     private final UserService userService;
+    private final UserProblemStatusRepository userProblemStatusRepository;
 
     @PostMapping
     public ResponseEntity<?> generateDailyProblems(@RequestParam Long userId) {
@@ -98,7 +104,7 @@ public class DailyProblemController {
     }
 
     @GetMapping("/explanations")
-    public ResponseEntity<?> getTodayDailyProblems(@RequestParam Long userId) {
+    public ResponseEntity<ApiResponse<List<SolvedProblemWithExplanationDto>>> getTodayDailyProblems(@RequestParam Long userId) {
         User user = userService.getUserById(userId);
         LocalDate today = LocalDate.now();
 
@@ -106,24 +112,53 @@ public class DailyProblemController {
         List<DailyProblem> dailyProblems = dailyProblemService.getDailyProblemsForUser(user, today);
         if (dailyProblems.isEmpty()) {
             return ResponseEntity.status(409).body(
-                    Map.of(
-                            "status", 409,
-                            "message", "오늘의 문제가 존재하지 않습니다.",
-                            "data", null
-                    )
+                    new ApiResponse<>(409,
+                            "오늘의 문제가 존재하지 않습니다.",
+                            null)
             );
         }
 
         //문제들을 DTO로 변환 (해설 포함)
-        List<ProblemDto> result = dailyProblems.stream()
-                .map(dp -> ProblemDto.from(dp.getProblem(), true))
-                .collect(Collectors.toList());
+        List<SolvedProblemWithExplanationDto> result = dailyProblems.stream().map(dp -> {
+            Problem p = dp.getProblem();
+            UserProblemStatus status = userProblemStatusRepository
+                    .findByUserAndProblem(user, p)
+                    .orElse(null);
+
+            // 보기 리스트 구성
+            List<String> options = new ArrayList<>();
+            if (p.getOption1() != null && !p.getOption1().trim().isEmpty()) options.add(p.getOption1());
+            if (p.getOption2() != null && !p.getOption2().trim().isEmpty()) options.add(p.getOption2());
+            if (p.getOption3() != null && !p.getOption3().trim().isEmpty()) options.add(p.getOption3());
+            if (p.getOption4() != null && !p.getOption4().trim().isEmpty()) options.add(p.getOption4());
+            if (p.getOption5() != null && !p.getOption5().trim().isEmpty()) options.add(p.getOption5());
+
+            int correctAnswer = Integer.parseInt(p.getCorrectAnswer());
+
+            int userAnswer = -1;
+            if (status != null && status.getUserAnswer() != null) {
+                try {
+                    userAnswer = Integer.parseInt(status.getUserAnswer());
+                } catch (NumberFormatException e) {
+                    userAnswer = -1;
+                }
+            }
+
+            boolean isCorrect = (status != null && Boolean.TRUE.equals(status.getIsCorrect()));
+
+            return new SolvedProblemWithExplanationDto(
+                    p.getId(),
+                    p.getQuestionText(),
+                    options,
+                    correctAnswer,
+                    userAnswer,
+                    isCorrect,
+                    p.getSolution()
+            );
+        }).collect(Collectors.toList());
+
         return ResponseEntity.ok(
-                Map.of(
-                        "status", 200,
-                        "message", "오늘의 문제 해설 조회 성공",
-                        "data", result
-                )
+                new ApiResponse<>(200, "오늘의 문제 해설 조회 성공", result)
         );
     }
 
