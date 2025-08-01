@@ -33,11 +33,13 @@ public class ProblemDto {
         if (problem.getOption4() != null) options.add(problem.getOption4());
         if (problem.getOption5() != null) options.add(problem.getOption5());
 
+        String correct = withSolution ? "option" + problem.getCorrectAnswer() : null;
+
         return new ProblemDto(
                 problem.getId(),
                 problem.getQuestionText(),
                 options,
-                withSolution ? problem.getCorrectAnswer() : null,
+                correct,
                 withSolution ? problem.getSolution() : null
         );
     }
