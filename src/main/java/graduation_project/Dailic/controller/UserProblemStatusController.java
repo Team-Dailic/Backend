@@ -1,9 +1,6 @@
 package graduation_project.Dailic.controller;
 
-import graduation_project.Dailic.controller.DTO.ScrapUpdateRequestDto;
-import graduation_project.Dailic.controller.DTO.UpdateStatusRequestDto;
-import graduation_project.Dailic.controller.DTO.UserProblemStatusRequestDto;
-import graduation_project.Dailic.controller.DTO.UserProblemStatusResponseDto;
+import graduation_project.Dailic.controller.DTO.*;
 import graduation_project.Dailic.domain.Problem;
 import graduation_project.Dailic.domain.User;
 import graduation_project.Dailic.domain.UserProblemStatus;
@@ -18,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,17 +29,24 @@ public class UserProblemStatusController {
 
     // 정답 제출 및 채점
     @PostMapping("/submit")
-    public ResponseEntity<UserProblemStatusResponseDto> submitAnswer(@RequestBody UserProblemStatusRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<UserProblemStatusResponseDto>> submitAnswer(@RequestBody UserProblemStatusRequestDto requestDto) {
 
         User user;
         try {
             user = userService.getUserById(requestDto.getUserId());
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "유저를 찾을 수 없습니다");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "유저를 찾을 수 없습니다.", null));
         }
 
-        Problem problem = problemService.findById(requestDto.getProblemId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "문제를 찾을 수 없습니다"));
+        Optional<Problem> problemOpt = problemService.findById(requestDto.getProblemId());
+        if (problemOpt.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "문제를 찾을 수 없습니다.", null));
+        }
+        Problem problem = problemOpt.get();
 
         Boolean isCorrect = problem.getCorrectAnswer().equals(requestDto.getUserAnswer());
 
@@ -57,80 +62,117 @@ public class UserProblemStatusController {
         }
 
         UserProblemStatus saved = userProblemStatusService.saveUserProblemStatus(status);
+        UserProblemStatusResponseDto responseDto = UserProblemStatusResponseDto.fromEntity(saved);
 
-        return ResponseEntity.ok(UserProblemStatusResponseDto.fromEntity(saved));
+        return ResponseEntity
+                .ok(new ApiResponse<>(HttpStatus.OK.value(), "정답이 성공적으로 제출되었습니다.", responseDto));
     }
 
     // 오답노트 문제 전체 조회
     @GetMapping("/wrong/{userId}")
-    public ResponseEntity<List<UserProblemStatusResponseDto>> getWrongProblems(@PathVariable Long userId) {
+    public ResponseEntity<ApiResponse<List<UserProblemStatusResponseDto>>> getWrongProblems(@PathVariable Long userId) {
         User user;
         try{
            user = userService.getUserById(userId);
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
         }
         List<UserProblemStatus> wrongList = userProblemStatusService.getIncorrectProblems(user);
         List<UserProblemStatusResponseDto> result = wrongList.stream()
                 .map(UserProblemStatusResponseDto::fromEntity)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(result);
+
+        return ResponseEntity
+                .ok(new ApiResponse<>(HttpStatus.OK.value(), "오답 노트 조회가 완료되었습니다.", result));
     }
 
     // 문제 스크랩 등록 및 취소
     @PutMapping("/scrap")
-    public ResponseEntity<UserProblemStatusResponseDto> updateScrapStatus(@RequestBody ScrapUpdateRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<UserProblemStatusResponseDto>> updateScrapStatus(@RequestBody ScrapUpdateRequestDto requestDto) {
         User user;
         try {
             user = userService.getUserById(requestDto.getUserId());
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "유저를 찾을 수 없습니다");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "유저를 찾을 수 없습니다.", null));
         }
 
         Problem problem = problemService.findById(requestDto.getProblemId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "문제를 찾을 수 없습니다"));
+                .orElse(null);
+        if (problem == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "문제를 찾을 수 없습니다.", null));
+        }
 
         UserProblemStatus status = userProblemStatusService.getUserProblemStatus(user, problem)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "문제 풀이 상태가 존재하지 않습니다"));
+                .orElse(null);
+        if (status == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "문제 풀이 상태가 존재하지 않습니다.", null));
+        }
 
         status.setIsScraped(requestDto.getIsScraped());
         UserProblemStatus updated = userProblemStatusService.saveUserProblemStatus(status);
+        UserProblemStatusResponseDto responseDto = UserProblemStatusResponseDto.fromEntity(updated);
+        String message = requestDto.getIsScraped() ? "문제가 스크랩되었습니다." : "문제 스크랩이 취소되었습니다.";
 
-        return ResponseEntity.ok(UserProblemStatusResponseDto.fromEntity(updated));
+        return ResponseEntity
+                .ok(new ApiResponse<>(HttpStatus.OK.value(), message, responseDto));
     }
 
     // 스크랩 문제 전체 조회
     @GetMapping("/scrap/{userId}")
-    public ResponseEntity<List<UserProblemStatusResponseDto>> getScrapedProblems(@PathVariable Long userId) {
+    public ResponseEntity<ApiResponse<List<UserProblemStatusResponseDto>>> getScrapedProblems(@PathVariable Long userId) {
         User user;
         try{
             user = userService.getUserById(userId);
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
         }
 
         List<UserProblemStatus> scrapList = userProblemStatusService.getScrapedProblems(user);
         List<UserProblemStatusResponseDto> result = scrapList.stream()
                 .map(UserProblemStatusResponseDto::fromEntity)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(result);
+
+        return ResponseEntity
+                .ok(new ApiResponse<>(HttpStatus.OK.value(), "스크랩 문제 조회가 완료되었습니다.", result));
     }
 
     // 문제 풀이 상태 업데이트 (정답 여부, 사용자 답안, 재풀이 여부)
     @PutMapping("/update")
-    public ResponseEntity<UserProblemStatusResponseDto> updateStatus(@RequestBody UpdateStatusRequestDto requestDto) {
+    public ResponseEntity<ApiResponse<UserProblemStatusResponseDto>> updateStatus(@RequestBody UpdateStatusRequestDto requestDto) {
         User user;
         try {
             user = userService.getUserById(requestDto.getUserId());
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "유저를 찾을 수 없습니다");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "유저를 찾을 수 없습니다.", null));
         }
 
         Problem problem = problemService.findById(requestDto.getProblemId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "문제를 찾을 수 없습니다"));
+                .orElse(null);
+        if (problem == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "문제를 찾을 수 없습니다.", null));
+        }
 
         UserProblemStatus existing = userProblemStatusService.getUserProblemStatus(user, problem)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "문제 풀이 상태가 존재하지 않습니다"));
+                .orElse(null);
+        if (existing == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "문제 풀이 상태가 존재하지 않습니다.", null));
+        }
 
         UserProblemStatus updated = userProblemStatusService.updateUserProblemStatus(
                 existing,
@@ -138,7 +180,9 @@ public class UserProblemStatusController {
                 requestDto.getUserAnswer(),
                 requestDto.getIsRetried()
         );
+        UserProblemStatusResponseDto responseDto = UserProblemStatusResponseDto.fromEntity(updated);
 
-        return ResponseEntity.ok(UserProblemStatusResponseDto.fromEntity(updated));
+        return ResponseEntity
+                .ok(new ApiResponse<>(HttpStatus.OK.value(), "문제 풀이 상태가 성공적으로 업데이트되었습니다.", responseDto));
     }
 }
