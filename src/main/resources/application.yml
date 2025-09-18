@@ -8,6 +8,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate.jdbc.batch_size: 100         # INSERT/UPDATE를 100건씩 배치
+      hibernate.order_inserts: true          # 같은 엔티티끼리 묶어서 insert
+      hibernate.order_updates: true          # 같은 엔티티끼리 묶어서 update
+      hibernate.batch_versioned_data: true   # @Version 있는 엔티티도 배치
   h2:
     console:
       enabled: true

@@ -1,0 +1,226 @@
+[
+    {
+        "questionText": "다음 중 엔터티 생성 시점에 따른 분류가 아닌 것은?",
+        "option1": "기본 엔터티",
+        "option2": "중심 엔터티",
+        "option3": "사건 엔터티",
+        "option4": "행위 엔터티",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "주식별자에 관한 설명 중 틀린 것은?",
+        "option1": "주식별자는 NULL이어도 된다.",
+        "option2": "유일해야 한다.",
+        "option3": "유일성을 만족하는 선에서 최소의 값을 가져야 한다.",
+        "option4": "자주 변하지 않아야 한다.",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "SUBSTR 함수 실행 결과 중, 다른 결과가 나오는 것을 고르시오.\nSUBSTR('abcdefgh', 7)\n2) SUBSTR('abcdefgh', -2)\nSUBSTR('abcdefgh', 8, -2)\nSUBSTR('abcdefgh', INSTR('abcdefgh', 'g'),2)",
+        "option1": "1",
+        "option2": "2",
+        "option3": "3",
+        "option4": "4",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText" : "NULL에 대한 설명으로 옳은 것은?",
+        "option1": "NULL은 집계 함수에서 제외된다.",
+        "option2": "NULL은 0과 같은 의미이다.",
+        "option3": "NULL = NULL은 true이다.",
+        "option4": "바커 표기법에서는 NULL 허용 여부를 알 수 없으나, IE 표기법에서는 NULL 허용 여부를 알 수 있다.",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "다음 중 SQL 명령어로 적절하지 않은 것은?",
+        "option1": "DDL : TRUNCATE",
+        "option2": "DML : DROP",
+        "option3": "DCL : REVOKE",
+        "option4": "TCL : COMMIT",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "집합 연산자인 Intersect에 대한 설명으로 가장 적절한 것은?",
+        "option1": "여러 개의 SQL문의 결과에 대한 합집합으로 중복된 행은 하나의 행으로 출력한다.",
+        "option2": "여러 개의 SQL문의 결과에 대한 합집합으로 중복된 행은 그대로 결과로 출력한다.",
+        "option3": "여러 개의 SQL문의 결과에 대한 교집합으로 중복된 행은 하나의 행으로 출력한다.",
+        "option4": "SQL문 결과 간의 차집합으로 중복된 행은 하나의 행으로 출력한다.",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 서브 쿼리의 결과로 여러 개의 컬럼이 반환되고, 이 결과가 메인 쿼리의 조건절에서 동시에 비교되는 서브 쿼리의 유형은 무엇인가?",
+        "option1": "단일행 서브쿼리",
+        "option2": "다중행 서브쿼리",
+        "option3": "단일컬럼 서브쿼리",
+        "option4": "다중컬럼 서브쿼리",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 정규 표현식의 내용 중 적절한 것은?",
+        "option1": "? : 0회 혹은 그 이상 반복하는 대상과 일치하는지 확인",
+        "option2": "* : 대상이 1회 이상 반복하는 대상과 일치하는지 확인",
+        "option3": "+ : 대상이 0회 혹은 그 이상 반복하는 대상과 일치하는지 확인",
+        "option4": "{m,} : 대상이 0회 혹은 그 이상 반복하는 대상과 일치하는지 확인",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "부서ID가 100인 부서의 최상위부터 최하위 부서까지 출력하라.",
+        "option1": "서브 쿼리, prior 상위 = 부서",
+        "option2": "서브 쿼리, 부서 = prior 상위",
+        "option3": "prior 상위 = 부서",
+        "option4": "부서 = prior 상위",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "아래의 SQL을 실행했을 경우 출력되지 않는 것은?\n'^[^mw][[:lowercase:]]*[u]*day$', ’i‘",
+        "option1": "Tuesday",
+        "option2": "Sunday",
+        "option3": "Friday",
+        "option4": "Saturday",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "아래 테이블에서 LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, INNER JOIN을 각각 수행하여 생성되는 행 수의 총 합을 구하여라.\nTAB1  TAB2\n----------\n  A    E  \n  B    F  \n  C    D  \n  G    G  ",
+        "option1": "14개",
+        "option2": "15개",
+        "option3": "16개",
+        "option4": "17개",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "SELECT NVL(COUNT(*), 9999)\nFROM TABLE\nWHERE 1=2의 결과값은?",
+        "option1": "NULL",
+        "option2": "1",
+        "option3": "9999",
+        "option4": "0",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "괄호 안에 들어갈 수 없는 것은?\nSELECT (   ), COUNT(EMPNO)\nFROM EMP\nGROUP BY JOB, DEPT;",
+        "option1": "EMPNO",
+        "option2": "JOB",
+        "option3": "DEPT",
+        "option4": "NULL",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "스키마의 종류로 옳지 않은 것은?",
+        "option1": "응용 스키마",
+        "option2": "외부 스키마",
+        "option3": "개념 스키마",
+        "option4": "내부 스키마",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "발생 시점에 따라 구분할 수 있는 엔터티의 유형으로 적절하지 않은 것은?",
+        "option1": "관계 엔터티",
+        "option2": "행위 엔터티",
+        "option3": "중심 엔터티",
+        "option4": "기본 엔터티",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "다른 속성을 이용하여 결과를 도출하는 속성은?",
+        "option1": "설계 속성",
+        "option2": "기본 속성",
+        "option3": "파생 속성",
+        "option4": "관계 속성",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 설명 중 옳은 것을 모두 고르시오.\n가. 주소는 시, 군, 구 등으로 나눠지므로 복합 속성이다.\n나. 나이는 단순 속성이다.\n다. 주민번호는 단일 값 속성이다.\n라. 연락처는 휴대폰 번호, 집 전화번호가 될 수 있기 때문에 다중 값 속성이다.",
+        "option1": "가, 라",
+        "option2": "가, 나, 다",
+        "option3": "나, 다, 라",
+        "option4": "가, 나, 다, 라",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "업무에 의해 만들어진 식별자로 옳은 것은?",
+        "option1": "외부 식별자",
+        "option2": "내부 식별자",
+        "option3": "본질 식별자",
+        "option4": "인조 식별자",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "모든 일반 속성이 주식별자에 종속되어 있는 정규형은?",
+        "option1": "제1 정규형",
+        "option2": "제2 정규형",
+        "option3": "제3 정규형",
+        "option4": "BCNF",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "정규화에 대한 설명으로 옳지 않은 것은?",
+        "option1": "정규화 시 유연성이 떨어진다.",
+        "option2": "일반 속성 간 종속을 제거하는 것은 제3 정규형이다.",
+        "option3": "반정규화는 데이터 중복으로 독립성이 떨어진다.",
+        "option4": "정규화를 많이 할수록 성능이 저하된다.",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "우선 순위가 가장 높은 연산자는?",
+        "option1": "비교",
+        "option2": "괄호",
+        "option3": "AND",
+        "option4": "OR",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "다음 중 결과로 옳은 것은?\n<TABLE1>\nCOL1  COL2\n----------\n  1    10  \n  1    20  \n  2    30  \n  3    40  \n  3    50  \nSELECT MAX(COL2) KEEP(DENSE_RANK FIRST ORDER BY COL1) FROM TABLE1;",
+        "option1": "10",
+        "option2": "20",
+        "option3": "40",
+        "option4": "60",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "다음 쿼리 문의 실행 결과로 옳은 것은?\n SELECT COLEASE(NULL, NULL, 'S', NULL, 'QL') FROM DUAL;",
+        "option1": "S",
+        "option2": "SQL",
+        "option3": "NULL",
+        "option4": "오류가 발생한다.",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "함수의 실행 결과로 옳은 것은?\nceil(9.36)\nround(9.48)\nfloor(9.72)",
+        "option1": "9, 9, 9",
+        "option2": "10, 9, 9",
+        "option3": "9, 9, 10",
+        "option4": "10, 10, 9",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "업체 테이블에 p, q, r 데이터가 있고 물품은 각 30, 40, 50개가 있다. 쿼리문 수행 결과로 옳은 것은?\nSELECT COUNT(DISTINCT 물품) FROM 업체;\nSELECT COUNT(*) FROM 업체 WHERE IN 물품 IN ('p', NULL);",
+        "option1": "3, 0",
+        "option2": "3, 30",
+        "option3": "3, 오류가 발생한다.",
+        "option4": "3, NULL",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "교집합으로 옳은 것은?",
+        "option1": "UNION",
+        "option2": "INTERSECT",
+        "option3": "MINUS",
+        "option4": "EXCEPT",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "다음 중 결과가 다른 것은?",
+        "option1": "CASE 칼럼 WHEN NULL THEM -1 ELSE 0 END",
+        "option2": "CASE WHEN 칼럼 IS NULL THEN -1 ELSE 0 END",
+        "option3": "DECODE(칼럼, NULL, -1, 0)",
+        "option4": "NVL(칼럼, -1)",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "셀프 조인을 수행할 수 있는 경우로 옳은 것은?",
+        "option1": "두 테이블 내에 칼럼이 연관 관계가 있는 경우",
+        "option2": "두 테이블 내에 연관 관계는 없지만 join이 필요할 때",
+        "option3": "한 테이블 내에 칼럼이 연관 관계가 있는 경우",
+        "option4": "한 테이블 내에 연관 관계는 없지만 join이 필요할 때",
+        "correctAnswer": "3"
+    }
+]
