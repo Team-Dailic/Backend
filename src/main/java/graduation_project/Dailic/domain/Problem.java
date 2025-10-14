@@ -1,8 +1,6 @@
 package graduation_project.Dailic.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +9,10 @@ import lombok.Setter;
 public class Problem {
     @Id @GeneratedValue
     private Long id;
+
+    // License와의 연관관계 추가
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private License license;
 
     private String questionText;
 

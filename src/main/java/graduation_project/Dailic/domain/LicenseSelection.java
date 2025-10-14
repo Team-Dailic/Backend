@@ -19,8 +19,8 @@ public class LicenseSelection {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User user;
 
-    @Column(nullable = false)
-    private String license;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private License license;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
