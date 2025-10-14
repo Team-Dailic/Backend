@@ -31,7 +31,7 @@ public class LicenseController {
         Map<String, Object> data = Map.of(
                 "userId", user.getId(),
                 "occupation", ls.getOccupation(),
-                "license", ls.getLicense()
+                "license", ls.getLicense().getName()
         );
         ApiResponse<Map<String, Object>> response = new ApiResponse<>(
                 200,
@@ -51,7 +51,7 @@ public class LicenseController {
         Map<String, Object> data = Map.of(
                 "userId", user.getId(),
                 "occupation", ls.getOccupation(),
-                "license", ls.getLicense()
+                "license", ls.getLicense().getName()
         );
         ApiResponse<Map<String, Object>> response = new ApiResponse<>(
                 200,
