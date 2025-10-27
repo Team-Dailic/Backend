@@ -1,9 +1,11 @@
 package graduation_project.Dailic.controller;
 
 import graduation_project.Dailic.controller.DTO.*;
+import graduation_project.Dailic.domain.LicenseSelection;
 import graduation_project.Dailic.domain.Problem;
 import graduation_project.Dailic.domain.User;
 import graduation_project.Dailic.domain.UserProblemStatus;
+import graduation_project.Dailic.service.LicenseService;
 import graduation_project.Dailic.service.ProblemService;
 import graduation_project.Dailic.service.UserProblemStatusService;
 import graduation_project.Dailic.service.UserService;
@@ -26,6 +28,7 @@ public class UserProblemStatusController {
     private final UserService userService;
     private final ProblemService problemService;
     private final UserProblemStatusService userProblemStatusService;
+    private final LicenseService licenseService;
 
     // 정답 제출 및 채점
     @PostMapping("/submit")
@@ -72,14 +75,18 @@ public class UserProblemStatusController {
     @GetMapping("/wrong/{userId}")
     public ResponseEntity<ApiResponse<List<UserProblemStatusResponseDto>>> getWrongProblems(@PathVariable Long userId) {
         User user;
+        LicenseSelection selection;
         try{
-           user = userService.getUserById(userId);
+            user = userService.getUserById(userId);
+            selection = licenseService.getCurrentLicenseSelection(userId);
         } catch (IllegalArgumentException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
         }
-        List<UserProblemStatus> wrongList = userProblemStatusService.getIncorrectProblems(user);
+
+        List<UserProblemStatus> wrongList = userProblemStatusService.getIncorrectProblems(user, selection.getLicense());
+
         List<UserProblemStatusResponseDto> result = wrongList.stream()
                 .map(UserProblemStatusResponseDto::fromEntity)
                 .collect(Collectors.toList());
@@ -129,15 +136,20 @@ public class UserProblemStatusController {
     @GetMapping("/scrap/{userId}")
     public ResponseEntity<ApiResponse<List<UserProblemStatusResponseDto>>> getScrapedProblems(@PathVariable Long userId) {
         User user;
+        LicenseSelection selection;
         try{
             user = userService.getUserById(userId);
+            // [수정] 현재 선택한 자격증 정보 조회
+            selection = licenseService.getCurrentLicenseSelection(userId);
         } catch (IllegalArgumentException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
         }
 
-        List<UserProblemStatus> scrapList = userProblemStatusService.getScrapedProblems(user);
+        // [수정] 자격증 기준으로 스크랩 목록 조회
+        List<UserProblemStatus> scrapList = userProblemStatusService.getScrapedProblems(user, selection.getLicense());
+
         List<UserProblemStatusResponseDto> result = scrapList.stream()
                 .map(UserProblemStatusResponseDto::fromEntity)
                 .collect(Collectors.toList());

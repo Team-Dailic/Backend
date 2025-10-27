@@ -45,17 +45,22 @@ public class LicenseService {
     }
 
     public CurrentLicenseDto getCurrentLicenseDto(Long userId){
-        LicenseSelection selection = licenseRepo.findByUserId(userId)
-                .orElseThrow(() -> new IllegalArgumentException("선택된 자격증이 없습니다."));
+        LicenseSelection selection = getCurrentLicenseSelection(userId);
+        License currentLicense = selection.getLicense();
 
-        int total = statusRepo.countTotalProblemsByUserId(userId);
-        int solved = statusRepo.countSolvedProblemsByUserId(userId);
+        int total = statusRepo.countTotalProblemsByUserAndLicense(userId, currentLicense);
+        int solved = statusRepo.countSolvedProblemsByUserAndLicense(userId, currentLicense);
 
         return new CurrentLicenseDto(
                 selection.getOccupation().name(),
-                selection.getLicense().getName(),
+                currentLicense.getName(),
                 total,
                 solved
         );
+    }
+
+    public LicenseSelection getCurrentLicenseSelection(Long userId) {
+        return licenseRepo.findByUserId(userId)
+                .orElseThrow(() -> new IllegalArgumentException("선택된 자격증이 없습니다."));
     }
 }
