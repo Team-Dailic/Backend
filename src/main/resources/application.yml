@@ -6,7 +6,7 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate.jdbc.batch_size: 100         # INSERT/UPDATE를 100건씩 배치
