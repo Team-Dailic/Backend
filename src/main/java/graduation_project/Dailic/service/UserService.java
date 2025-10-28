@@ -32,6 +32,17 @@ public class UserService {
                 ->new IllegalArgumentException("User not found:" + id));
     }
 
+    //유저가 없으면 새로 생성
+    @Transactional
+    public User getCreateUser(Long id) {
+        return userRepository.findById(id).orElseGet(() -> {
+            User newUser = new User();
+            newUser.setId(id);
+            return userRepository.save(newUser);
+        });
+    }
+
+
     //삭제
     @Transactional
     public void deleteUser(Long id) {
