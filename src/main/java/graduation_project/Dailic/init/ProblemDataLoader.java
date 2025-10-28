@@ -34,7 +34,7 @@ public class ProblemDataLoader {
         }
 
         // 1. 운전면허 필기시험 데이터 로드
-        loadProblemsForLicense("운전면허 필기시험", "problem-data.json");
+        loadProblemsForLicense("운전면허증", "problem-data.json");
 
         // 2. 정보처리기사 데이터 로드
         loadProblemsForLicense("정보처리기사", "info-processing-data.json");
