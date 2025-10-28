@@ -25,7 +25,7 @@ public class LicenseController {
     public ResponseEntity<?> selectLicense(
             @RequestParam Long userId,
             @RequestBody LicenseSelectionRequestDto req) {
-        User user = userService.getUserById(userId);
+        User user = userService.getCreateUser(userId);
         LicenseSelection ls = licenseService.register(
                 user, req.getOccupation(), req.getLicense());
         Map<String, Object> data = Map.of(
