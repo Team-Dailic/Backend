@@ -4,15 +4,14 @@ package graduation_project.Dailic.controller;
 import graduation_project.Dailic.controller.DTO.ApiResponse;
 import graduation_project.Dailic.controller.DTO.ProblemDto;
 import graduation_project.Dailic.controller.DTO.SolvedProblemWithExplanationDto;
-import graduation_project.Dailic.domain.DailyProblem;
-import graduation_project.Dailic.domain.Problem;
-import graduation_project.Dailic.domain.User;
-import graduation_project.Dailic.domain.UserProblemStatus;
+import graduation_project.Dailic.domain.*;
 import graduation_project.Dailic.repository.UserProblemStatusRepository;
 import graduation_project.Dailic.service.DailyProblemService;
+import graduation_project.Dailic.service.LicenseService;
 import graduation_project.Dailic.service.ProblemService;
 import graduation_project.Dailic.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,11 +29,20 @@ public class DailyProblemController {
     private final ProblemService problemService;
     private final UserService userService;
     private final UserProblemStatusRepository userProblemStatusRepository;
+    private final LicenseService licenseService;
 
     @PostMapping
     public ResponseEntity<?> generateDailyProblems(@RequestParam Long userId) {
         User user = userService.getUserById(userId);
         LocalDate today = LocalDate.now();
+
+        LicenseSelection selection;
+        try {
+            selection = licenseService.getCurrentLicenseSelection(userId);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
+        }
 
         // 이미 오늘 문제가 생성됐는지 확인
         List<DailyProblem> existing = dailyProblemService.getDailyProblemsForUser(user, today);
@@ -42,8 +50,12 @@ public class DailyProblemController {
             return ResponseEntity.ok("이미 오늘의 문제가 생성되어 있습니다.");
         }
 
-        // ⛳ 진짜 Problem 엔티티 20개 가져옴 (이게 핵심)
-        List<Problem> randomProblems = problemService.findRandomProblemEntities(20);
+        List<Problem> randomProblems = problemService.findRandomProblemEntitiesByLicense(selection.getLicense(), 20);
+
+        if (randomProblems.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), "선택한 자격증에 해당하는 문제가 없습니다.", null));
+        }
 
         for (int i = 0; i < randomProblems.size(); i++) {
             DailyProblem dp = new DailyProblem();
@@ -54,7 +66,7 @@ public class DailyProblemController {
             dailyProblemService.saveDailyProblem(dp);
         }
 
-        return ResponseEntity.ok("오늘의 문제 20개가 생성되었습니다.");
+        return ResponseEntity.ok(new ApiResponse<>(200, "오늘의 문제 20개가 생성되었습니다.", null));
     }
 
     // ✅ 오늘의 문제 조회
@@ -78,16 +90,30 @@ public class DailyProblemController {
         User user = userService.getUserById(userId);
         LocalDate today = LocalDate.now();
 
+        // 사용자의 현재 선택 자격증을 가져옵니다.
+        LicenseSelection selection;
+        try {
+            selection = licenseService.getCurrentLicenseSelection(userId);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
+        }
+
         List<DailyProblem> current = dailyProblemService.getDailyProblemsForUser(user, today);
 
         List<Long> alreadyUsedIds = current.stream()
                 .map(dp -> dp.getProblem().getId())
                 .collect(Collectors.toList());
 
-        List<Problem> newProblems = problemService.findRandomProblemEntities(30).stream()
+        // '선택한 자격증'의 문제 30개를 가져와서 필터링합니다.
+        List<Problem> newProblems = problemService.findRandomProblemEntitiesByLicense(selection.getLicense(), 30).stream()
                 .filter(p -> !alreadyUsedIds.contains(p.getId()))
                 .limit(5)
                 .collect(Collectors.toList());
+
+        if (newProblems.isEmpty()) {
+            return ResponseEntity.ok(new ApiResponse<>(200, "추가할 수 있는 새로운 문제가 없습니다.", null));
+        }
 
         int startSeq = current.size();
 
@@ -100,7 +126,7 @@ public class DailyProblemController {
             dailyProblemService.saveDailyProblem(dp);
         }
 
-        return ResponseEntity.ok("추가 문제 5개 생성 완료");
+        return ResponseEntity.ok(new ApiResponse<>(200, "추가 문제 " + newProblems.size() + "개 생성 완료", null));
     }
 
     @GetMapping("/explanations")

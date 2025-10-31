@@ -2,9 +2,12 @@ package graduation_project.Dailic.service;
 
 
 import graduation_project.Dailic.controller.DTO.ProblemDto;
+import graduation_project.Dailic.domain.License;
 import graduation_project.Dailic.domain.Problem;
 import graduation_project.Dailic.repository.ProblemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +44,12 @@ public class ProblemService {
     // 문제 삭제
     @Transactional
     public void deleteProblem(Long id) {problemRepository.deleteById(id);}
+
+    // License를 기준으로 랜덤 문제 N개 조회
+    public List<Problem> findRandomProblemEntitiesByLicense(License license, int count) {
+        Pageable pageable = PageRequest.of(0, count);
+        return problemRepository.findRandomProblemsByLicense(license, pageable);
+    }
 
     //DTO 기반 단건 조회 withSolution 처리
     public ProblemDto getProblemDtoById(Long id, boolean withSolution) {
