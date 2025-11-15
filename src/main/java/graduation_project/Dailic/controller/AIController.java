@@ -23,17 +23,17 @@ public class AIController {
         return ResponseEntity.ok(aiService.ask(request.getQuestion()));
     }
 
-    /**
-     * 🔹 문제 해설 API
-     * GET/POST: /ai/explain/{problemId}?includeSolution=true
-     * includeSolution=true면 정답+기존 해설 포함
-     */
+    // 🔹 문제 해설 API
+    // GET/POST: /ai/explain/{problemId}?userId={userId}&includeSolution=true
     @PostMapping("/explain/{problemId}")
     public ResponseEntity<String> explain(
             @PathVariable Long problemId,
+            // ✨ 1. userId를 쿼리 파라미터로 추가
+            @RequestParam Long userId,
             @RequestParam(defaultValue = "false") boolean includeSolution
     ) {
-        ProblemDto dto = problemService.getProblemDtoById(problemId, includeSolution);
+        // ✨ 2. problemService 호출 시 userId 전달
+        ProblemDto dto = problemService.getProblemDtoById(problemId, includeSolution, userId);
         return ResponseEntity.ok(aiService.explain(dto, includeSolution));
     }
 

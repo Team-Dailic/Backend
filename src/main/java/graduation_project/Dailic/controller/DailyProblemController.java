@@ -78,7 +78,19 @@ public class DailyProblemController {
         List<DailyProblem> dailyProblems = dailyProblemService.getDailyProblemsForUser(user, today);
 
         List<ProblemDto> result = dailyProblems.stream()
-                .map(dp -> ProblemDto.from(dp.getProblem(), false)) // 해설 없이 반환
+                .map(dp -> {
+                    Problem p = dp.getProblem();
+
+                    // 해당 문제에 대한 UserProblemStatus 조회
+                    UserProblemStatus status = userProblemStatusRepository
+                            .findByUserAndProblem(user, p)
+                            .orElse(null);
+
+                    // 스크랩 여부 판단 (기록이 없거나 isScraped가 null이면 false로 간주)
+                    boolean isScraped = (status != null && Boolean.TRUE.equals(status.getIsScraped()));
+
+                    return ProblemDto.from(p, false, isScraped); // 해설 없이, 스크랩 여부와 함께 반환
+                })
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(result);
