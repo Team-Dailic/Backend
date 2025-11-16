@@ -12,6 +12,7 @@ public class UserProblemStatusResponseDto {
     private Long id;
     private Long userId;
     private Long problemId;
+    private String questionText;
     private Boolean isCorrect;
     private Boolean isScraped;
     private String userAnswer;
@@ -23,6 +24,7 @@ public class UserProblemStatusResponseDto {
         dto.setId(status.getId());
         dto.setUserId(status.getUser().getId());
         dto.setProblemId(status.getProblem().getId());
+        dto.setQuestionText(status.getProblem().getQuestionText());
         dto.setIsCorrect(status.getIsCorrect());
         dto.setIsScraped(status.getIsScraped());
         dto.setUserAnswer(status.getUserAnswer());
