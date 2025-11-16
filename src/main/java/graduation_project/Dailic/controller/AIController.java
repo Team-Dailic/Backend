@@ -1,9 +1,11 @@
 package graduation_project.Dailic.controller;
 
+import graduation_project.Dailic.controller.DTO.ApiResponse;
 import graduation_project.Dailic.controller.DTO.ProblemDto;
 import graduation_project.Dailic.service.AIService;
 import graduation_project.Dailic.service.ProblemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,22 +21,37 @@ public class AIController {
      * 자유 질문 API
      */
     @PostMapping("/ask")
-    public ResponseEntity<String> ask(@RequestBody AskRequest request) {
-        return ResponseEntity.ok(aiService.ask(request.getQuestion()));
+    // 반환 타입 변경
+    public ResponseEntity<ApiResponse<String>> ask(@RequestBody AskRequest request) {
+        String aiResponse = aiService.ask(request.getQuestion());
+
+        // ApiResponse로 감싸서 반환
+        ApiResponse<String> response = new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "AI 답변 조회가 완료되었습니다.",
+                aiResponse
+        );
+        return ResponseEntity.ok(response);
     }
 
-    // 🔹 문제 해설 API
-    // GET/POST: /ai/explain/{problemId}?userId={userId}&includeSolution=true
+    //--- 문제 해설 API ---
     @PostMapping("/explain/{problemId}")
-    public ResponseEntity<String> explain(
+    // 반환 타입 변경
+    public ResponseEntity<ApiResponse<String>> explain(
             @PathVariable Long problemId,
-            // ✨ 1. userId를 쿼리 파라미터로 추가
             @RequestParam Long userId,
             @RequestParam(defaultValue = "false") boolean includeSolution
     ) {
-        // ✨ 2. problemService 호출 시 userId 전달
         ProblemDto dto = problemService.getProblemDtoById(problemId, includeSolution, userId);
-        return ResponseEntity.ok(aiService.explain(dto, includeSolution));
+        String aiExplanation = aiService.explain(dto, includeSolution);
+
+        // ApiResponse로 감싸서 반환
+        ApiResponse<String> response = new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "AI 해설 조회가 완료되었습니다.",
+                aiExplanation
+        );
+        return ResponseEntity.ok(response);
     }
 
     /**
