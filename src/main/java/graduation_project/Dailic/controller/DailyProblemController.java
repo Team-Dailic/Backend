@@ -71,7 +71,7 @@ public class DailyProblemController {
 
     // ✅ 오늘의 문제 조회
     @GetMapping
-    public ResponseEntity<List<ProblemDto>> getTodayProblems(@RequestParam Long userId) {
+    public ResponseEntity<ApiResponse<List<ProblemDto>>> getTodayProblems(@RequestParam Long userId) {
         User user = userService.getUserById(userId);
         LocalDate today = LocalDate.now();
 
@@ -93,7 +93,12 @@ public class DailyProblemController {
                 })
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(result);
+        ApiResponse<List<ProblemDto>> response = new ApiResponse<>(
+                200,
+                "오늘의 문제 조회 성공",
+                result
+        );
+        return ResponseEntity.ok(response); // 👈 중괄호({})로 시작하는 JSON 객체가 반환됩니다
     }
 
     // ✅ 추가 문제 요청 (옵션)
