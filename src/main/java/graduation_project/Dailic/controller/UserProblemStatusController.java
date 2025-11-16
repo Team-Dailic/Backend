@@ -115,15 +115,29 @@ public class UserProblemStatusController {
                     .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "문제를 찾을 수 없습니다.", null));
         }
 
+        // 핵심 수정: 상태가 존재하지 않으면 새로운 객체를 Builder를 사용하여 생성
         UserProblemStatus status = userProblemStatusService.getUserProblemStatus(user, problem)
-                .orElse(null);
-        if (status == null) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "문제 풀이 상태가 존재하지 않습니다.", null));
-        }
+                .orElseGet(() -> {
+                    // @Column(nullable=false) 제약 조건을 만족하는 기본값 설정
+                    return UserProblemStatus.builder()
+                            .user(user)
+                            .problem(problem)
+                            // 풀지 않았으므로, isCorrect는 false 또는 Nullable을 허용해야 하지만,
+                            // 현재 @Column(nullable = false) 이므로 기본값 false로 설정합니다.
+                            .isCorrect(false)
+                            // 스크랩 여부는 초기값 false로 설정 (아래에서 요청 값으로 덮어쓰기 예정)
+                            .isScraped(false)
+                            .userAnswer(null)      // 답안 없음
+                            .isRetried(false)      // 재풀이 아님
+                            // LocalDateTime 필드 역시 nullable=false 이므로, 현재 시간으로 기록
+                            .answeredAt(LocalDateTime.now())
+                            .build();
+                });
 
+        // 요청받은 스크랩 상태를 설정 (기존 레코드 또는 새로 생성된 레코드 모두 적용)
         status.setIsScraped(requestDto.getIsScraped());
+
+        // 저장 (기존 레코드 업데이트 또는 새 레코드 INSERT)
         UserProblemStatus updated = userProblemStatusService.saveUserProblemStatus(status);
         UserProblemStatusResponseDto responseDto = UserProblemStatusResponseDto.fromEntity(updated);
         String message = requestDto.getIsScraped() ? "문제가 스크랩되었습니다." : "문제 스크랩이 취소되었습니다.";
