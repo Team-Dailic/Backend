@@ -38,13 +38,13 @@ public class AIService {
             // 헤더
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setBearerAuth(properties.getApiKey());
+            headers.setBearerAuth(properties.getKey());
 
             HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
 
             // OpenAI API 호출
             ResponseEntity<OpenAiResponse> response = openAiRestTemplate.exchange(
-                    properties.getApiUrl(),
+                    properties.getUrl(),
                     HttpMethod.POST,
                     entity,
                     OpenAiResponse.class
@@ -98,13 +98,13 @@ public class AIService {
             // 헤더
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setBearerAuth(properties.getApiKey());
+            headers.setBearerAuth(properties.getKey());
 
             HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
 
             // 요청 전송
             ResponseEntity<OpenAiResponse> response = openAiRestTemplate.exchange(
-                    properties.getApiUrl(),
+                    properties.getUrl(),
                     HttpMethod.POST,
                     entity,
                     OpenAiResponse.class

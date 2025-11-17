@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "openai")
 public class OpenAIProperties {
-    private String apiKey;
-    private String apiUrl;
+    private String key;
+    private String url;
     private String model;
 
     @PostConstruct
     public void logProperties() { // 애플리케이션 시작 시 설정값 출력 (디버깅용)
         System.out.println("=== OpenAI 설정 확인 ===");
-        System.out.println("API Key: " + (apiKey == null ? "NULL" : apiKey.substring(0, 8) + "..."));
-        System.out.println("API URL: " + apiUrl);
+        System.out.println("API Key: " + (key == null ? "NULL" : key.substring(0, 8) + "..."));
+        System.out.println("API URL: " + url);
         System.out.println("Model: " + model);
         System.out.println("=======================");
     }
