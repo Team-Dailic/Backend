@@ -20,15 +20,21 @@ public class AIController {
     /**
      * 자유 질문 API
      */
-    @PostMapping("/ask")
-    // 반환 타입 변경
-    public ResponseEntity<ApiResponse<String>> ask(@RequestBody AskRequest request) {
-        String aiResponse = aiService.ask(request.getQuestion());
+    @PostMapping("/ask/{problemId}") // URL 및 PathVariable 설정
+    public ResponseEntity<ApiResponse<String>> ask(
+            @PathVariable Long problemId,
+            @RequestParam Long userId,
+            @RequestBody AskRequest request
+    ) {
+        // 운전면허 자격증으로 한정 (문맥 설정용)
+        String licenseName = "운전면허 시험";
 
-        // ApiResponse로 감싸서 반환
+        // AIService의 ask 메서드를 문맥 기반 로직으로 호출
+        String aiResponse = aiService.ask(problemId, userId, licenseName, request.getQuestion());
+
         ApiResponse<String> response = new ApiResponse<>(
                 HttpStatus.OK.value(),
-                "AI 답변 조회가 완료되었습니다.",
+                "AI 문맥 기반 답변 조회가 완료되었습니다.",
                 aiResponse
         );
         return ResponseEntity.ok(response);

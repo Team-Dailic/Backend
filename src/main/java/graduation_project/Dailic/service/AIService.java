@@ -21,14 +21,50 @@ public class AIService {
 
     private final RestTemplate openAiRestTemplate;
     private final OpenAIProperties properties;
+    private final ProblemService problemService;
 
-    public String ask(String question) {
+    public String ask(Long problemId, Long userId, String licenseName, String question) {
         try {
-            // 요청 DTO
+            // 1. ProblemService를 통해 문제 내용 (ProblemDto) 조회
+            ProblemDto problem = problemService.getProblemDtoById(problemId, false, userId);
+
+            // 2. 시스템 프롬프트 및 사용자 질문 통합
+            String systemPrompt = String.format(
+                    "당신은 '%s' 시험 대비 학습 멘토입니다. 당신이 현재 참조하고 있는 문제는 아래와 같습니다. 사용자의 질문에 대해 현재 참조 중인 시험 문맥과 문제 내용을 기반으로 전문적으로 답변해 주세요. 답변은 간결하고 명확해야 합니다.",
+                    licenseName
+            );
+
+            StringBuilder userPrompt = new StringBuilder();
+            userPrompt.append("--- 참조 문제 내용 ---\n");
+
+            // 문제 내용 Null 체크
+            if (problem.getQuestionText() == null) {
+                return "참조할 문제 내용이 없어 질문을 처리할 수 없습니다.";
+            }
+
+            userPrompt.append("문제: ").append(problem.getQuestionText()).append("\n");
+
+            if (problem.getOptions() != null && !problem.getOptions().isEmpty()) {
+                userPrompt.append("보기:\n");
+                for (int i = 0; i < problem.getOptions().size(); i++) {
+                    userPrompt.append((i + 1)).append(") ").append(problem.getOptions().get(i)).append("\n");
+                }
+            }
+
+            userPrompt.append("----------------------\n");
+            userPrompt.append("사용자 질문: ").append(question);
+
+            // 3. 요청 메시지 구성
+            List<OpenAiRequest.Message> messages = List.of(
+                    new OpenAiRequest.Message("system", systemPrompt),
+                    new OpenAiRequest.Message("user", userPrompt.toString())
+            );
+
             OpenAiRequest request = new OpenAiRequest(
                     properties.getModel(),
-                    List.of(new OpenAiRequest.Message("user", question))
+                    messages
             );
+
 
             // JSON 직렬화 로그
             ObjectMapper mapper = new ObjectMapper();
