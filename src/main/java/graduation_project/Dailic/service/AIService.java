@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -102,28 +103,39 @@ public class AIService {
     /**
      * 🔹 문제 해설
      */
-    public String explain(ProblemDto problem, boolean includeSolution) {
+    public String explain(ProblemDto problem, boolean includeSolution, String licenseName) { // ✨ licenseName 파라미터 추가
         try {
-            // 🔥 프롬프트 구성
-            StringBuilder prompt = new StringBuilder();
-            prompt.append("다음 객관식 문제를 단계별로 한국어로 해설해줘.\n");
-            prompt.append("문제: ").append(problem.getQuestionText()).append("\n");
-            prompt.append("보기:\n");
+            // 1. 시스템 프롬프트 설정 (licenseName 활용)
+            String systemPrompt = String.format(
+                    "당신은 '%s' 시험 대비 학습 멘토입니다. 다음 객관식 문제를 단계별로 상세하고 친절하게 한국어로 해설해 주세요.",
+                    licenseName
+            );
+
+            // 2. 사용자 요청 내용 구성
+            StringBuilder userPrompt = new StringBuilder();
+            userPrompt.append("문제: ").append(problem.getQuestionText()).append("\n");
+            userPrompt.append("보기:\n");
             for (int i = 0; i < problem.getOptions().size(); i++) {
-                prompt.append((i + 1)).append(") ").append(problem.getOptions().get(i)).append("\n");
-            }
-            if (includeSolution && problem.getCorrectAnswer() != null) {
-                String answerNum = problem.getCorrectAnswer().replace("option", "");
-                prompt.append("정답: ").append(answerNum).append("\n");
-            }
-            if (includeSolution && problem.getSolution() != null) {
-                prompt.append("기존 해설: ").append(problem.getSolution()).append("\n");
+                userPrompt.append((i + 1)).append(") ").append(problem.getOptions().get(i)).append("\n");
             }
 
-            // 요청 DTO
+            // 정답 및 기존 해설 정보 추가
+            if (includeSolution && problem.getCorrectAnswer() != null) {
+                String answerNum = problem.getCorrectAnswer().replace("option", "");
+                userPrompt.append("정답: ").append(answerNum).append("\n");
+            }
+            if (includeSolution && problem.getSolution() != null) {
+                userPrompt.append("기존 해설: ").append(problem.getSolution()).append("\n");
+            }
+
+            // 3. 요청 메시지 DTO 구성
+            List<OpenAiRequest.Message> messages = new ArrayList<>();
+            messages.add(new OpenAiRequest.Message("system", systemPrompt)); // ✨ System Prompt 추가
+            messages.add(new OpenAiRequest.Message("user", userPrompt.toString()));
+
             OpenAiRequest request = new OpenAiRequest(
                     properties.getModel(),
-                    List.of(new OpenAiRequest.Message("user", prompt.toString()))
+                    messages
             );
 
             // JSON 직렬화
