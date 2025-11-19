@@ -10,6 +10,7 @@ import graduation_project.Dailic.service.DailyProblemService;
 import graduation_project.Dailic.service.LicenseService;
 import graduation_project.Dailic.service.ProblemService;
 import graduation_project.Dailic.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,56 +33,58 @@ public class DailyProblemController {
     private final LicenseService licenseService;
 
     @PostMapping
-    public ResponseEntity<?> generateDailyProblems(@RequestParam Long userId) {
-        User user = userService.getUserById(userId);
-        LocalDate today = LocalDate.now();
-
-        LicenseSelection selection;
+    public ResponseEntity<ApiResponse<?>> generateDailyProblems(@RequestParam Long userId) {
+        final int PROBLEM_COUNT = 20;
         try {
-            selection = licenseService.getCurrentLicenseSelection(userId);
-        } catch (IllegalArgumentException e) {
+            //    DailyProblemService의 통합된 메서드를 호출하여 로직을 위임합니다.
+            //    이 메서드는 이미 문제가 있으면 기존 것을 반환하고, 없으면 새로 생성합니다.
+            //    LicenseService에서 이미 기존 문제를 삭제했으므로, 새로운 문제가 생성될 것입니다.
+            List<DailyProblem> problems = dailyProblemService.createDailyProblems(userId, PROBLEM_COUNT);
+
+            if (problems.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), "선택한 자격증에 해당하는 문제가 없습니다.", null));
+            }
+
+            return ResponseEntity.ok(new ApiResponse<>(200, "오늘의 문제 20개가 준비되었습니다.", null));
+
+        } catch (IllegalArgumentException | EntityNotFoundException e) {
+            // LicenseService, UserService, DailyProblemService 등에서 발생한 예외 처리
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
         }
-
-        // 이미 오늘 문제가 생성됐는지 확인
-        List<DailyProblem> existing = dailyProblemService.getDailyProblemsForUser(user, today);
-        if (!existing.isEmpty()) {
-            return ResponseEntity.ok("이미 오늘의 문제가 생성되어 있습니다.");
-        }
-
-        List<Problem> randomProblems = problemService.findRandomProblemEntitiesByLicense(selection.getLicense(), 20);
-
-        if (randomProblems.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), "선택한 자격증에 해당하는 문제가 없습니다.", null));
-        }
-
-        for (int i = 0; i < randomProblems.size(); i++) {
-            DailyProblem dp = new DailyProblem();
-            dp.setUser(user);
-            dp.setProblem(randomProblems.get(i));
-            dp.setDate(today);
-            dp.setSequenceNumber(i + 1);
-            dailyProblemService.saveDailyProblem(dp);
-        }
-
-        return ResponseEntity.ok(new ApiResponse<>(200, "오늘의 문제 20개가 생성되었습니다.", null));
     }
 
     // ✅ 오늘의 문제 조회
     @GetMapping
-    public ResponseEntity<List<ProblemDto>> getTodayProblems(@RequestParam Long userId) {
+    public ResponseEntity<ApiResponse<List<ProblemDto>>> getTodayProblems(@RequestParam Long userId) {
         User user = userService.getUserById(userId);
         LocalDate today = LocalDate.now();
 
         List<DailyProblem> dailyProblems = dailyProblemService.getDailyProblemsForUser(user, today);
 
         List<ProblemDto> result = dailyProblems.stream()
-                .map(dp -> ProblemDto.from(dp.getProblem(), false)) // 해설 없이 반환
+                .map(dp -> {
+                    Problem p = dp.getProblem();
+
+                    // 해당 문제에 대한 UserProblemStatus 조회
+                    UserProblemStatus status = userProblemStatusRepository
+                            .findByUserAndProblem(user, p)
+                            .orElse(null);
+
+                    // 스크랩 여부 판단 (기록이 없거나 isScraped가 null이면 false로 간주)
+                    boolean isScraped = (status != null && Boolean.TRUE.equals(status.getIsScraped()));
+
+                    return ProblemDto.from(p, false, isScraped); // 해설 없이, 스크랩 여부와 함께 반환
+                })
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(result);
+        ApiResponse<List<ProblemDto>> response = new ApiResponse<>(
+                200,
+                "오늘의 문제 조회 성공",
+                result
+        );
+        return ResponseEntity.ok(response); // 👈 중괄호({})로 시작하는 JSON 객체가 반환됩니다
     }
 
     // ✅ 추가 문제 요청 (옵션)

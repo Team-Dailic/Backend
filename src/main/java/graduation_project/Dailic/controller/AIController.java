@@ -1,9 +1,13 @@
 package graduation_project.Dailic.controller;
 
+import graduation_project.Dailic.controller.DTO.AIResponse;
+import graduation_project.Dailic.controller.DTO.ApiResponse;
 import graduation_project.Dailic.controller.DTO.ProblemDto;
 import graduation_project.Dailic.service.AIService;
+import graduation_project.Dailic.service.LicenseService;
 import graduation_project.Dailic.service.ProblemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,27 +18,62 @@ public class AIController {
 
     private final AIService aiService;
     private final ProblemService problemService; // 🔥 여기에 추가
+    private final LicenseService licenseService;
 
     /**
      * 자유 질문 API
      */
-    @PostMapping("/ask")
-    public ResponseEntity<String> ask(@RequestBody AskRequest request) {
-        return ResponseEntity.ok(aiService.ask(request.getQuestion()));
+    @PostMapping("/ask/{problemId}")
+    // 반환 타입을 ApiResponse<AIResponse>로 변경
+    public ResponseEntity<ApiResponse<AIResponse>> ask(
+            @PathVariable Long problemId,
+            @RequestParam Long userId,
+            @RequestBody AskRequest request
+    ) {
+        String licenseName = licenseService.getCurrentLicenseSelection(userId)
+                .getLicense()
+                .getName();
+
+        // AIService에서 String 응답을 받음
+        String aiResponseText = aiService.ask(problemId, userId, licenseName, request.getQuestion());
+
+        // String 응답을 AIResponse DTO로 래핑
+        AIResponse aiResponseDto = new AIResponse(aiResponseText);
+
+        ApiResponse<AIResponse> response = new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "AI 문맥 기반 답변 조회가 완료되었습니다.",
+                aiResponseDto
+        );
+        return ResponseEntity.ok(response);
     }
 
-    /**
-     * 🔹 문제 해설 API
-     * GET/POST: /ai/explain/{problemId}?includeSolution=true
-     * includeSolution=true면 정답+기존 해설 포함
-     */
+    //--- 문제 해설 API ---
     @PostMapping("/explain/{problemId}")
-    public ResponseEntity<String> explain(
+    // 반환 타입을 ApiResponse<AIResponse>로 변경
+    public ResponseEntity<ApiResponse<AIResponse>> explain(
             @PathVariable Long problemId,
+            @RequestParam Long userId,
             @RequestParam(defaultValue = "false") boolean includeSolution
     ) {
-        ProblemDto dto = problemService.getProblemDtoById(problemId, includeSolution);
-        return ResponseEntity.ok(aiService.explain(dto, includeSolution));
+        String licenseName = licenseService.getCurrentLicenseSelection(userId)
+                .getLicense()
+                .getName();
+
+        ProblemDto dto = problemService.getProblemDtoById(problemId, includeSolution, userId);
+
+        // AIService에서 String 해설을 받음
+        String aiExplanationText = aiService.explain(dto, includeSolution, licenseName);
+
+        // String 해설을 AIResponse DTO로 래핑
+        AIResponse explanationDto = new AIResponse(aiExplanationText);
+
+        ApiResponse<AIResponse> response = new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "AI 해설 조회가 완료되었습니다.",
+                explanationDto
+        );
+        return ResponseEntity.ok(response);
     }
 
     /**

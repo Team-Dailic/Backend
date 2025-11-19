@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Setter(AccessLevel.PUBLIC)
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 public class DailyProblem {
 
     @Id
@@ -30,4 +30,7 @@ public class DailyProblem {
     // 1~20번 문제 순서
     @Column(nullable = false)
     private int sequenceNumber;
+
+    @Column(nullable = false)
+    private boolean solved = false;
 }

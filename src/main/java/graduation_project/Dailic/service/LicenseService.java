@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.*;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class LicenseService {
     private final ProblemRepository problemRepository; // 👈 2. ProblemRepository 주입
     private final LicenseRepository licenseRepository;
     private final UserRepository userRepository; // ✅ 추가
+    private final DailyProblemRepository dailyProblemRepository;
 
     @Transactional
     public LicenseSelection register(User user, Occupation occupation, String licenseName) {
@@ -45,6 +47,10 @@ public class LicenseService {
 
         ls.setOccupation(occupation);
         ls.setLicense(license);
+
+        // 자격증 변경 시, 오늘 날짜의 데일리 문제 강제 삭제
+
+        dailyProblemRepository.deleteByUserAndDate(user, LocalDate.now());
 
         return ls;
     }

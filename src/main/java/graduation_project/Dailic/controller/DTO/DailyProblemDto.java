@@ -11,10 +11,12 @@ public class DailyProblemDto {
     private int sequenceNumber;
     private ProblemDto problem;
 
-    public static DailyProblemDto from(DailyProblem dp) {
+    public static DailyProblemDto from(DailyProblem dp, boolean isScraped) {
         DailyProblemDto dto = new DailyProblemDto();
         dto.setSequenceNumber(dp.getSequenceNumber());
-        dto.setProblem(ProblemDto.from(dp.getProblem(), false));
+
+        dto.setProblem(ProblemDto.from(dp.getProblem(), false, isScraped));
+
         return dto;
     }
 }

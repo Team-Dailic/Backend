@@ -18,9 +18,15 @@ public class ProblemController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getProblemById(
             @PathVariable Long id,
+            // ✨ userId 추가
+            @RequestParam Long userId,
             @RequestParam(value = "withSolution", defaultValue = "false")
             boolean withSolution) {
-        ProblemDto problemDto = problemService.getProblemDtoById(id, withSolution);
+
+        // ProblemService의 메서드를 userId를 받도록 수정하고 호출
+        // (ProblemService에서 User 객체와 UserProblemStatus를 조회하는 로직이 필요)
+        ProblemDto problemDto = problemService.getProblemDtoById(id, withSolution, userId);
+
         return ResponseEntity.ok(
                 Map.of(
                         "status", 200,
