@@ -5,6 +5,7 @@
         "option2": "중심 엔터티",
         "option3": "사건 엔터티",
         "option4": "행위 엔터티",
+        "option5": "",
         "correctAnswer": "3"
     },
     {
@@ -13,6 +14,7 @@
         "option2": "유일해야 한다.",
         "option3": "유일성을 만족하는 선에서 최소의 값을 가져야 한다.",
         "option4": "자주 변하지 않아야 한다.",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -21,6 +23,7 @@
         "option2": "2",
         "option3": "3",
         "option4": "4",
+        "option5": "",
         "correctAnswer": "3"
     },
     {
@@ -29,6 +32,7 @@
         "option2": "NULL은 0과 같은 의미이다.",
         "option3": "NULL = NULL은 true이다.",
         "option4": "바커 표기법에서는 NULL 허용 여부를 알 수 없으나, IE 표기법에서는 NULL 허용 여부를 알 수 있다.",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -37,6 +41,7 @@
         "option2": "DML : DROP",
         "option3": "DCL : REVOKE",
         "option4": "TCL : COMMIT",
+        "option5": "",
         "correctAnswer": "2"
     },
     {
@@ -45,6 +50,7 @@
         "option2": "여러 개의 SQL문의 결과에 대한 합집합으로 중복된 행은 그대로 결과로 출력한다.",
         "option3": "여러 개의 SQL문의 결과에 대한 교집합으로 중복된 행은 하나의 행으로 출력한다.",
         "option4": "SQL문 결과 간의 차집합으로 중복된 행은 하나의 행으로 출력한다.",
+        "option5": "",
         "correctAnswer": "3"
     },
     {
@@ -53,6 +59,7 @@
         "option2": "다중행 서브쿼리",
         "option3": "단일컬럼 서브쿼리",
         "option4": "다중컬럼 서브쿼리",
+        "option5": "",
         "correctAnswer": "4"
     },
     {
@@ -61,6 +68,7 @@
         "option2": "* : 대상이 1회 이상 반복하는 대상과 일치하는지 확인",
         "option3": "+ : 대상이 0회 혹은 그 이상 반복하는 대상과 일치하는지 확인",
         "option4": "{m,} : 대상이 0회 혹은 그 이상 반복하는 대상과 일치하는지 확인",
+        "option5": "",
         "correctAnswer": "4"
     },
     {
@@ -69,6 +77,7 @@
         "option2": "서브 쿼리, 부서 = prior 상위",
         "option3": "prior 상위 = 부서",
         "option4": "부서 = prior 상위",
+        "option5": "",
         "correctAnswer": "4"
     },
     {
@@ -77,6 +86,7 @@
         "option2": "Sunday",
         "option3": "Friday",
         "option4": "Saturday",
+        "option5": "",
         "correctAnswer": "3"
     },
     {
@@ -85,6 +95,7 @@
         "option2": "15개",
         "option3": "16개",
         "option4": "17개",
+        "option5": "",
         "correctAnswer": "3"
     },
     {
@@ -93,6 +104,7 @@
         "option2": "1",
         "option3": "9999",
         "option4": "0",
+        "option5": "",
         "correctAnswer": "4"
     },
     {
@@ -101,6 +113,7 @@
         "option2": "JOB",
         "option3": "DEPT",
         "option4": "NULL",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -109,6 +122,7 @@
         "option2": "외부 스키마",
         "option3": "개념 스키마",
         "option4": "내부 스키마",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -117,6 +131,7 @@
         "option2": "행위 엔터티",
         "option3": "중심 엔터티",
         "option4": "기본 엔터티",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -125,6 +140,7 @@
         "option2": "기본 속성",
         "option3": "파생 속성",
         "option4": "관계 속성",
+        "option5": "",
         "correctAnswer": "3"
     },
     {
@@ -133,6 +149,7 @@
         "option2": "가, 나, 다",
         "option3": "나, 다, 라",
         "option4": "가, 나, 다, 라",
+        "option5": "",
         "correctAnswer": "4"
     },
     {
@@ -141,6 +158,7 @@
         "option2": "내부 식별자",
         "option3": "본질 식별자",
         "option4": "인조 식별자",
+        "option5": "",
         "correctAnswer": "3"
     },
     {
@@ -149,6 +167,7 @@
         "option2": "제2 정규형",
         "option3": "제3 정규형",
         "option4": "BCNF",
+        "option5": "",
         "correctAnswer": "2"
     },
     {
@@ -157,6 +176,7 @@
         "option2": "일반 속성 간 종속을 제거하는 것은 제3 정규형이다.",
         "option3": "반정규화는 데이터 중복으로 독립성이 떨어진다.",
         "option4": "정규화를 많이 할수록 성능이 저하된다.",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -165,6 +185,7 @@
         "option2": "괄호",
         "option3": "AND",
         "option4": "OR",
+        "option5": "",
         "correctAnswer": "2"
     },
     {
@@ -173,6 +194,7 @@
         "option2": "20",
         "option3": "40",
         "option4": "60",
+        "option5": "",
         "correctAnswer": "2"
     },
     {
@@ -181,6 +203,7 @@
         "option2": "SQL",
         "option3": "NULL",
         "option4": "오류가 발생한다.",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -189,6 +212,7 @@
         "option2": "10, 9, 9",
         "option3": "9, 9, 10",
         "option4": "10, 10, 9",
+        "option5": "",
         "correctAnswer": "2"
     },
     {
@@ -197,6 +221,7 @@
         "option2": "3, 30",
         "option3": "3, 오류가 발생한다.",
         "option4": "3, NULL",
+        "option5": "",
         "correctAnswer": "2"
     },
     {
@@ -205,6 +230,7 @@
         "option2": "INTERSECT",
         "option3": "MINUS",
         "option4": "EXCEPT",
+        "option5": "",
         "correctAnswer": "2"
     },
     {
@@ -213,6 +239,7 @@
         "option2": "CASE WHEN 칼럼 IS NULL THEN -1 ELSE 0 END",
         "option3": "DECODE(칼럼, NULL, -1, 0)",
         "option4": "NVL(칼럼, -1)",
+        "option5": "",
         "correctAnswer": "1"
     },
     {
@@ -221,6 +248,664 @@
         "option2": "두 테이블 내에 연관 관계는 없지만 join이 필요할 때",
         "option3": "한 테이블 내에 칼럼이 연관 관계가 있는 경우",
         "option4": "한 테이블 내에 연관 관계는 없지만 join이 필요할 때",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 아래에서 엔터티 내에 주식별자를 도출하는 기준으로 옳지 않은 것은?",
+        "option1": "해당 업무에서 자주 이용되는 속성을 주식별자로 지정한다.",
+        "option2": "지정된 주식별자의 값은 자주 변하지 않는 것이어야 한다.",
+        "option3": "명칭, 내역 등과 같이 이름으로 기술되는 것들을 주식별자로 지정한다.",
+        "option4": "복합으로 주식별자를 구성할 경우 너무 많은 속성을 포함하지 않도록 한다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "관계 표기법으로 옳지 않은 것은?",
+        "option1": "관계명",
+        "option2": "관계차수",
+        "option3": "관계선택사양",
+        "option4": "관계분류",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 중 스키마의 종류가 아닌 것은?",
+        "option1": "외부 스키마",
+        "option2": "내부 스키마",
+        "option3": "개념 스키마",
+        "option4": "응용 스키마",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "정규화 과정에서 N:N 관계를 처리하는 단계로 가장 적절한 것은?",
+        "option1": "개괄 모델링",
+        "option2": "개념 모델링",
+        "option3": "논리 모델링",
+        "option4": "물리 모델링",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "아래 SQL의 수행 결과로 올바른 것은?\n\n[TAB1]\nCOL1 VARCHAR2(30)\nCOL2 NUMBER\n\n[TAB1]\nCOL1    COL2\n------------\nY        20\nX        30\nA        40\nA        50\n         10\n         80\n\n[SQL]\nSELECT NVL(COUNT(*), 9999)\n  FROM TAB1\n WHERE 1=2;",
+        "option1": "0",
+        "option2": "9999",
+        "option3": "1",
+        "option4": "ERROR",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "Natural join의 특징이 아닌 것은?",
+        "option1": "두 테이블간 동일한 이름을 가진 컬럼으로 조인이 이루어진다.",
+        "option2": "등가조인(Equi Join), 비등가조인(Non-Equi Join)이 가능하다.",
+        "option3": "USING 절을 사용할 수 없다.",
+        "option4": "ON 절을 사용할 수 없다.",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "데이터 제어어(DCL) 및 트랜잭션 제어어(TCL)에 해당하지 않는 것은?",
+        "option1": "GRANT",
+        "option2": "ROLLBACK",
+        "option3": "REVOKE",
+        "option4": "ALTER",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "SQL 집합 연산자에서 교집합에 해당하는 것은?",
+        "option1": "UNION ALL",
+        "option2": "EXCEPT",
+        "option3": "INTERSECT",
+        "option4": "UNION",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 DELETE와 TRUNCATE, DROP 명령어에 대해 비교한 설명으로 가장 부적절한 것을 고르시오.",
+        "option1": "DROP은 테이블 정의 및 모든 데이터를 삭제한다.",
+        "option2": "TRUNCATE 명령어는 테이블을 초기상태로 만든다.",
+        "option3": "TRUNCATE 명령어는 UNDO를 위한 데이터를 생성하지 않기 때문에 동일 데이터량 삭제 시 DELETE보다 빠르다.",
+        "option4": "DROP은 Auto Commit이 되고, DELETE와 TRUNCATE는 사용자 Commit으로 수행된다.",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "두번째 글자가 's'이고, 총 길이가 4글자 이상인 문자열을 찾을 때, 올바르지 않은 것은?",
+        "option1": "%S__",
+        "option2": "_S%__",
+        "option3": "_S_%_",
+        "option4": "_S__%",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "다음 중 결과 값이 다른 질의어는?\n\n1) ~ 3)은 컬럼 COL 기준으로 T1과 T2를 조인하는 경우이다.",
+        "option1": "SELECT * FROM T1 NATURAL JOIN T2",
+        "option2": "SELECT * FROM T1 JOIN T2 USING(COL)",
+        "option3": "SELECT * FROM T1 INNER JOIN T2 ON T1.COL = T2.COL",
+        "option4": "SELECT * FROM T2\n WHERE T2.COL IN (SELECT COL FROM T1 WHERE T2.COL = T1.COL)",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "PLAYER 테이블에서 선수명과 팀명은 오름차순, 연봉은 내림차순으로 조회하는 SQL로 바른 것은?",
+        "option1": "SELECT 선수명, 팀명, 연봉 FROM PLAYER ORDER BY 선수명 DESC, 팀명 DESC, 연봉 ASC",
+        "option2": "SELECT 선수명, 팀명, 연봉 FROM PLAYER ORDER BY 선수명 ASC, 팀명, 3 DESC",
+        "option3": "SELECT 선수명, 팀명, 연봉 FROM PLAYER ORDER BY 선수명 ASC, 팀명 ASC, 연봉",
+        "option4": "SELECT 선수명, 팀명, 연봉 FROM PLAYER ORDER BY 선수명, 팀명, DESC 연봉",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "아래의 테이블에서 오류가 발생하는 SQL을 고르시오.\n\n[TEAM]\nID   COL1\n---------\n1     A\n2     B\n3     C\n4     D\n\n[STADIUM]\nID   COL2\n----------\n1     A\n2     B",
+        "option1": "SELECT * FROM TEAM A INNER JOIN STADIUM B ON A.ID = B.ID",
+        "option2": "SELECT * FROM TEAM A INNER JOIN STADIUM B USING(ID)",
+        "option3": "SELECT * FROM TEAM A NATURAL JOIN STADIUM B",
+        "option4": "SELECT * FROM TEAM A INNER JOIN STADIUM B ON (ID)",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 중 B_User가 아래의 작업을 수행할 수 있도록 권한을 부여하는 DCL로 가장 적절한 것은?\n\nUPDATE A_User.TB_A\n   SET col1 = 'AAA'\n WHERE col2 = 3;",
+        "option1": "GRANT SELECT, UPDATE TO B_User;",
+        "option2": "REVOKE SELECT ON A_User.TB_A FROM B_User;",
+        "option3": "DENY UPDATE ON A_User.TB_A TO B_User;",
+        "option4": "GRANT SELECT, UPDATE ON A_User.TB_A TO B_User;",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "아래와 같은 SQL문에 대해 삽입이 성공하는 SQL 문은?\n\nCREATE TABLE TBL (\n  ID NUMBER PRIMARY KEY,\n  AMT NUMBER NOT NULL,\n  DEGREE VARCHAR2(1)\n);\n\n가. INSERT INTO TBL VALUES(1, 100)\n나. INSERT INTO TBL(ID, AMT, DEGREE) VALUES(2, 200, 'AB')\n다. INSERT INTO TBL(ID, DEGREE) VALUES(4, 'X')\n라. INSERT INTO TBL(ID, AMT) VALUES(3, 300)\n마. INSERT INTO TBL VALUES(5, 500, NULL)",
+        "option1": "가, 나",
+        "option2": "나, 다",
+        "option3": "다, 라",
+        "option4": "라, 마",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "아래 내용이 설명하는 스키마 구조로 가장 적절한 것은?\n\n모든 사용자 관점을 통합한 조직 전체의 관점의 통합적 표현\n모든 응용시스템들이나 사용자들이 필요로 하는 데이터를 통합한 조직 전체의 DB를 기술한 것으로\nDB에 저장되는 데이터와 그들 간의 관계를 표현하는 스키마",
+        "option1": "외부 스키마",
+        "option2": "개념 스키마",
+        "option3": "내부 스키마",
+        "option4": "논리 스키마",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "발생 시점 엔터티가 아닌 것을 고르시오.",
+        "option1": "기본 엔터티",
+        "option2": "중심 엔터티",
+        "option3": "행위 엔터티",
+        "option4": "유형 엔터티",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 중 데이터 모델링의 관계에 대한 설명으로 가장 부적절한 것을 고르시오.",
+        "option1": "관계는 존재에 의한 관계와 행위에 의한 관계로 구분될 수 있으나 ERD에서는 관계를 연결할 때, 존재와 행위를 구분하지 않고 단일화된 표기법을 사용한다.",
+        "option2": "UML(Unified Modeling Language)에는 클래스 다이어그램의 관계 중 연관관계(Association)와 의존관계(Dependency)가 있고 이것은 실선과 점선의 표기법으로 다르게 표현된다.",
+        "option3": "관계는 존재에 의한 관계와 행위에 의한 관계로 구분될 수 있고 ERD에서는 관계를 연결할 때, 존재와 행위를 구분하지 않고 단일화된 표기법을 사용한다.",
+        "option4": "UML(Unified Modeling Language)에는 클래스 다이어그램의 관계 중 연관관계(Association)와 의존관계(Dependency)가 있으나 구분하지 않고 단일화된 표기법을 사용한다.",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 중 데이터를 조회할 때 빠른 성능을 낼 수 있도록 하기 위해 원래 속성의 값을 계산하여 저장할 수 있도록 만든 속성으로 가장 적절한 것은?",
+        "option1": "파생 속성(Derived Attribute)",
+        "option2": "기본 속성(Basic Attribute)",
+        "option3": "설계 속성(Designed Attribute)",
+        "option4": "PK 속성(Primary Key Attribute)",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "속성의 특징으로 가장 올바른 것은?",
+        "option1": "엔터티는 한 개의 속성만으로 구성될 수 있다.",
+        "option2": "엔터티를 설명하고 인스턴스의 구성요소가 된다.",
+        "option3": "하나의 속성에는 여러 개의 속성값을 가질 수 있다.",
+        "option4": "속성의 특성에 따른 분류에는 PK 속성, FK 속성, 일반 속성이 있다.",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "아래의 내용은 주식별자의 어떤 특징을 설명한 것인가?",
+        "option1": "유일성",
+        "option2": "최소성",
+        "option3": "불변성",
+        "option4": "존재성",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 중 엔터티 간의 관계에서 1:1, 1:M과 같이 관계의 기수성을 나타내는 것으로 가장 적절한 것은?",
+        "option1": "관계명(Relationship Membership)",
+        "option2": "관계차수(Relationship Degree/Cardinality)",
+        "option3": "관계선택사양(Relationship Optionality)",
+        "option4": "관계정의(Relationship Definition)",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "다음 중 SELECT 문장의 실행 순서를 올바르게 나열한 것은?",
+        "option1": "SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY",
+        "option2": "FROM → SELECT → WHERE → GROUP BY → HAVING → ORDER BY",
+        "option3": "FROM → WHERE → GROUP BY → HAVING → ORDER BY → SELECT",
+        "option4": "FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 아래의 SQL에 대한 설명으로 가장 적절한 것은?\n\nSELECT 상품분류코드\n      ,AVG(상품가격) AS 상품가격\n      ,COUNT(*) OVER(ORDER BY AVG(상품가격)\n                     RANGE BETWEEN 10000 PRECEDING\n                           AND 10000 FOLLOWING) AS 유사개수\n  FROM 상품\n GROUP BY 상품분류코드;",
+        "option1": "WINDOW FUNCTION을 GROUP BY 절과 함께 사용하였으므로 위의 SQL은 오류가 발생한다.",
+        "option2": "WINDOW FUNCTION의 ORDER BY 절에 AVG 집계 함수를 사용하였으므로 위의 SQL은 오류가 발생한다.",
+        "option3": "유사개수 컬럼은 상품분류코드별 평균 상품가격을 서로 비교하여 -10000 ~ +10000 사이에 존재하는 상품분류코드의 개수를 구한 것이다.",
+        "option4": "유사개수 컬럼은 상품 전체의 평균 상품가격을 서로 비교하여 -10000 ~ +10000 사이에 존재하는 상품의 개수를 구한 것이다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "아래 쿼리문의 결과값을 고르시오.\n\nSELECT COUNT(*) FROM DUAL WHERE LEVEL <= 2;",
+        "option1": "0",
+        "option2": "1",
+        "option3": "2",
+        "option4": "NULL",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "아래의 설명 중 속성에 대한 설명이 가장 적절하지 않은 것은?",
+        "option1": "일반예금은 코드 엔터티를 별도로 구분하고 값에는 코드값만 포함한다.",
+        "option2": "원금, 예치기간은 기본(BASIC) 속성이다.",
+        "option3": "이자와 이자율은 파생(DERIVED) 속성이다.",
+        "option4": "예금분류는 설계(DESIGNED) 속성이다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 결과값이 다른 하나를 고르시오.\n(각 함수의 반환 결과 중 하나만 다른 값을 가진다.)",
+        "option1": "CEIL(22.14)",
+        "option2": "FLOOR(22.14)",
+        "option3": "TRUNC(22.14)",
+        "option4": "ROUND(22.14)",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "데이터 무결성을 지키기 위한 것과 관계없는 것을 고르시오.",
+        "option1": "애플리케이션의 로직",
+        "option2": "Trigger",
+        "option3": "Lock",
+        "option4": "Constraints",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 아래와 같은 집합이 존재할 때, 집합 A와 B에 대하여 집합 연산을 수행한 결과 집합 C가 되는 경우 이용되는 데이터베이스 집합 연산은?\nA = {1, 2, 3, 4}\nB = {3, 4, 5, 6}\nC = {3, 4}",
+        "option1": "UNION",
+        "option2": "DIFFERENCE",
+        "option3": "INTERSECTION",
+        "option4": "PRODUCT",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 SUBSTR 함수 실행 결과 중, 다른 결과가 나오는 것을 고르시오.",
+        "option1": "SELECT SUBSTR('DATABASE', 7) FROM DUAL;",
+        "option2": "SELECT SUBSTR('DATABASE', -2) FROM DUAL;",
+        "option3": "SELECT SUBSTR('DATABASE', 8, -2) FROM DUAL;",
+        "option4": "SELECT SUBSTR('DATABASE', INSTR('DATABASE', 'S'), 2) FROM DUAL;",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "아래의 SQL에서 1건만 출력되는 SQL이 아닌 것을 고르시오.\n(ROWNUM 조건만 표시됨)",
+        "option1": "ROWNUM <= 1",
+        "option2": "ROWNUM < 2",
+        "option3": "ROWNUM >= 2",
+        "option4": "ROWNUM BETWEEN 2 AND 1",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "아래의 설명으로 알맞은 것은?\n\n[지문]\n시스템으로 구축하고자 하는 업무에 대해 Key, 속성, 관계 등을 정확하게 표현하고 재사용성이 높은 모델링으로 알맞은 것은?",
+        "option1": "논리적 데이터 모델링",
+        "option2": "개념적 데이터 모델링",
+        "option3": "물리적 데이터 모델링",
+        "option4": "데이터베이스 모델링",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "엔터티 특징으로 적절하지 않은 것은?",
+        "option1": "엔터티는 고유한 식별자를 가진다.",
+        "option2": "엔터티는 데이터 저장의 기본 단위이다.",
+        "option3": "엔터티는 반드시 속성을 가진다.",
+        "option4": "속성이 없는 엔터티가 있을 수 있다.",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "속성 특징으로 적절하지 않은 것은?",
+        "option1": "속성은 엔터티의 특성을 나타낸다.",
+        "option2": "속성에는 기본 속성과 파생 속성이 있다.",
+        "option3": "파생 속성은 다른 속성에서 계산된다.",
+        "option4": "파생 속성은 많을수록 좋다.",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "식별자의 특징으로 적절하지 않은 것은?",
+        "option1": "식별자는 엔터티의 유일성을 보장한다.",
+        "option2": "식별자는 최소성 조건을 만족해야 한다.",
+        "option3": "주식별자는 엔터티를 고유하게 식별한다.",
+        "option4": "주식별자의 값은 변경될 수 있다.",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "식별자관계에 대한 설명으로 적절하지 않은 것은?",
+        "option1": "식별자 관계는 부모 엔터티와 종속적인 관계를 맺는다.",
+        "option2": "비식별자 관계에서 부모와의 관계는 필수 조건이다.",
+        "option3": "식별자 관계는 부모의 식별자를 자식에게 전달한다.",
+        "option4": "비식별자 관계는 자식 엔터티가 독립적으로 존재할 수 있다.",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "아래의 경우 생성하는 식별자는?\n\n[지문]\n업무적으로 만들어지지는 않지만 원조식별자가 복잡한 구성을 갖고 있기 때문에 인위적으로 만든 식별자",
+        "option1": "외래키",
+        "option2": "복합 식별자",
+        "option3": "인조 식별자",
+        "option4": "자연 식별자",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "Null 대한 설명으로 적절한 것은?",
+        "option1": "Null 에는 연산자를 사용할 수 없다.",
+        "option2": "바커 표기법에서 Null 허용 여부를 알 수 없다.",
+        "option3": "Null 은 미지의 값으로 비교가 불가하다.",
+        "option4": "IE 표기법에서 Null 허용 여부를 알 수 있다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "CTAS 에 대한 설명으로 적절하지 않은 것은?",
+        "option1": "데이터만 복사한다.",
+        "option2": "제약조건이 모두 복사된다.",
+        "option3": "기존 테이블의 구조를 기반으로 한다.",
+        "option4": "일부 제약조건은 별도로 추가할 수 있다.",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "View 에 대한 설명으로 적절하지 않은 것은?",
+        "option1": "View 는 조회 속도를 높이기 위해 사용된다.",
+        "option2": "View 는 실제 데이터를 저장하지 않는다.",
+        "option3": "컬럼 추가가 될 때 View 를 변경하지 않아도 응용프로그램에 영향을 미치지 않는다.",
+        "option4": "View 는 다른 테이블의 데이터를 참조한다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "Database 의 논리적 업무 최소 단위는?",
+        "option1": "트랜잭션",
+        "option2": "레코드",
+        "option3": "Query",
+        "option4": "테이블",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "아래의 계층형 쿼리와 결과에 대한 설명으로 적절하지 않은 것은?\n\n#emp_no는 하위 사원 번호, mgr_no는 상위 관리자 번호를 나타냄\n\nCONNECT BY Prior emp_no = mgr_no",
+        "option1": "계층 구조를 조회한다.",
+        "option2": "상위 관리자부터 조회한다.",
+        "option3": "역방향 이다.",
+        "option4": "순방향 이다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "SQL 의 결과가 다른 것은? (Oracle 에 한함)\n\n[TAB]\nCOL1  COL2  COL3\n-----------------\n1     2     A\n2     3     B\n3     2     C\n4     3     D",
+        "option1": "SELECT COL1, COL2, COL3 FROM TAB WHERE COL1 < 5",
+        "option2": "SELECT T.* FROM TAB AS T",
+        "option3": "SELECT * FROM TAB",
+        "option4": "SELECT * FROM TAB WHERE COL2 IN (2, 3)",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "아래의 SQL 과 같은 SQL 은? (IN - EXISTS 전환 문제)\n\n[SQL]\nSELECT * FROM A\nWHERE 번호 IN (\n    SELECT 번호 FROM B\n    WHERE A.성별 = B.성별\n)",
+        "option1": "SELECT * FROM A\nWHERE EXISTS (\n    SELECT 1 FROM B\n    WHERE A.성별 = B.성별\n      AND A.번호 = B.번호\n)",
+        "option2": "SELECT * FROM A\nJOIN B ON A.성별 = B.성별",
+        "option3": "SELECT * FROM A\nWHERE A.성별 IN (\n    SELECT B.성별 FROM B\n    WHERE A.번호 = B.번호\n)",
+        "option4": "SELECT * FROM A\nWHERE 번호 = ALL (\n    SELECT 번호 FROM B\n    WHERE A.성별 = B.성별\n)",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "아래의 SQL 결과로 알맞은 것은?\n\n[TAB_A]\nCOL1\n-----\n1\n2\nNULL\n\n[TAB_B]\nCOL2\n-----\n1\n2\n3\n\n[SQL]\nSELECT COUNT(*) FROM TAB_B\nWHERE COL2 NOT IN (SELECT COL1 FROM TAB_A);",
+        "option1": "Null",
+        "option2": "0",
+        "option3": "1",
+        "option4": "전체 건수",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "비식별자 관계로 구성된 테이블에 대한 설명 중 적절하지 않은 것은?",
+        "option1": "부모 자식간 1:M 관계이고 부모 테이블이 생성되지 않았을때 자식 테이블이 생성된다",
+        "option2": "부모 테이블의 삭제 시점이 자식 테이블보다 빠르다",
+        "option3": "테이블간 조인을 최소화한다",
+        "option4": "자식 테이블의 주 식별자를 부모 테이블에서 받아오는것보다 직접 생성하는게 더 효율적이다",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "엔터티의 분류 중 발생 시점에 다른 분류가 아닌 것은?",
+        "option1": "기본 엔터티",
+        "option2": "사건 엔터티",
+        "option3": "중심 엔터티",
+        "option4": "행위 엔터티",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "트랜잭션이 동시에 실행될 경우 다른 트랜잭션에 의해 영향을 받지 않고 독립적으로 실행되어야 하는것은?",
+        "option1": "원자성",
+        "option2": "일관성",
+        "option3": "고립성",
+        "option4": "지속성",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "아래 쿼리의 결과값을 고르시오.\n\n[TAB1]\nC1   C2   C3\n1     2    3\nNull  2    3\nNull  Null 3\n\nSELECT SUM(COALESCE(C1, C2, C3)) FROM TAB1;",
+        "option1": "0",
+        "option2": "1",
+        "option3": "6",
+        "option4": "14",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 SELECT 문장의 실행 순서를 올바르게 나열한 것은?",
+        "option1": "SELECT - FROM - WHERE - GROUP BY - HAVING - ORDER BY",
+        "option2": "FROM - SELECT - WHERE - GROUP BY - HAVING - ORDER BY",
+        "option3": "FROM - WHERE - GROUP BY - HAVING - ORDER BY - SELECT",
+        "option4": "FROM - WHERE - GROUP BY - HAVING - SELECT - ORDER BY",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "테이블 생성 후 복제(CTAS) 에서 제약조건 적용중 적절한 것을 고르시오.",
+        "option1": "프라이머리키(PK) 가 복제되지 않는다.",
+        "option2": "NOT NULL 조건 적용이 안 된다.",
+        "option3": "Check 적용된다.",
+        "option4": "varchar2(3) default '000' 이 적용된다.",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "SQL 특징이 아닌 것을 고르시오.",
+        "option1": "절차적(procedural)",
+        "option2": "구조적(structured)",
+        "option3": "집합적(set-based)",
+        "option4": "선언적(declarative)",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "다음 중 아래와 같은 데이터 상황에서 SQL의 수행 결과로 가장 적절한 것은?\n\n[TAB1]\nC1   C2\nA    1\nB    2\nC    3\nD    4\nE    5\n\n[TAB2]\nC1   C2\nB    2\nC    3\nD    4\n\n[SQL]\nSELECT * FROM TAB1 A LEFT OUTER JOIN TAB2 B\nON (A.C1 = B.C1 AND B.C2 BETWEEN 1 AND 3)",
+        "option1": "A 1 | null null\nB 2 | B 2\nC 3 | null null\nD 4 | null null\nE 5 | null null",
+        "option2": "A 1 | null null\nB 2 | B 2\nC 3 | C 3\nD 4 | null null\nE 5 | null null",
+        "option3": "A 1 | null null\nB 2 | B 2\nC 3 | C 3\nD 4 | D 4\nE 5 | null null",
+        "option4": "A 1 | null null\nB 2 | B 2\nC 3 | C 3\nD 4 | D 4\nE 5 | E 5",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "Natural join 특징이 아닌 것은?",
+        "option1": "두 테이블간 동일한 이름을 가진 컬럼으로 조인이 이루어진다.",
+        "option2": "등가조인(Equi Join), 비등가조인(Non-Equi Join)이 가능하다.",
+        "option3": "USING 절을 사용할 수 없다.",
+        "option4": "ON 절을 사용할 수 없다.",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "다음 중 DELETE와 TRUNCATE, DROP 명령어에 대해 비교한 설명으로 가장 부적절한 것을 고르시오.",
+        "option1": "DROP은 테이블 정의 및 모든 데이터를 삭제한다.",
+        "option2": "TRUNCATE 명령어는 테이블을 초기상태로 만든다.",
+        "option3": "TRUNCATE 명령어는 UNDO를 위한 데이터를 생성하지 않기 때문에 동일 데이터량 삭제 시 DELETE보다 빠르다.",
+        "option4": "DROP은 Auto Commit이 되고, DELETE와 TRUNCATE는 사용자 Commit으로 수행된다.",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "데이터 제어어(DCL) 및 트랜잭션 제어어(TCL)에 해당하지 않는 것은?",
+        "option1": "GRANT",
+        "option2": "ROLLBACK",
+        "option3": "REVOKE",
+        "option4": "ALTER",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "SQL 집합 연산자에서 교집합에 해당하는 것은?",
+        "option1": "UNION ALL",
+        "option2": "EXCEPT",
+        "option3": "INTERSECT",
+        "option4": "UNION",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "아래 SQL의 수행결과로 올바른 것은?\n\n[TAB1]\nCOL1 VARCHAR2(30)\nCOL2 NUMBER\n\n[TAB1]\nCOL1   COL2\nY      20\nX      30\nA      40\nA      50\n        10\n        80\n\nSELECT NVL(COUNT(*), 9999)\nFROM TAB1\nWHERE 1 = 2;",
+        "option1": "0",
+        "option2": "9999",
+        "option3": "1",
+        "option4": "ERROR",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "아래 테이블에 대한 [뷰 생성 스크립트]를 실행한 후, 조회 SQL의 실행결과로 맞는 것은?\n\n[TBL]\nC1   C2\nA    100\nB    200\nB    100\nB    200\n\n[VIEW 생성]\nCREATE VIEW V_TBL AS\nSELECT * FROM TBL\nWHERE C1 = 'B' OR C1 IS NULL;\n\n[조회 SQL]\nSELECT SUM(C2) C2\nFROM V_TBL\nWHERE C2 >= 200 AND C1 = 'B';",
+        "option1": "0",
+        "option2": "200",
+        "option3": "300",
+        "option4": "400",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "성능을 고려한 데이터 모델링에서 고려해야 할 사항으로 올바르지 않은 것은?",
+        "option1": "성능 튜닝을 위해서 애플리케이션이 데이터베이스에 접근하는 트랜잭션 유형은 무시해도 된다.",
+        "option2": "배치를 통해서 입력되는 데이터 용량이 크면 클수록 성능 튜닝을 위한 비용은 증가된다.",
+        "option3": "성능 향상을 위해서 튜닝을 수행하면 데이터베이스 모델링이 변경될 수 있다.",
+        "option4": "데이터베이스 모델링 시에 성능을 고려한 모델링을 수행하면 성능 비용을 감소 시킬 수 있다.",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "다음 중 데이터베이스 논리 모델에 대한 설명으로 올바르지 않은 것은?",
+        "option1": "개념 데이터 모델은 사용자 관점에서 데이터 요구사항을 식별한다.",
+        "option2": "논리 데이터 모델은 M:N 관계 해소, 식별자 확정, 정규화, 무결성 정의 등을 수행한다.",
+        "option3": "논리 모델은 데이터베이스를 구축을 위해서만 사용되는 것이다.",
+        "option4": "데이터가 물리적으로 저장되는 방법을 정의하는 것이 물리적 모델이다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "릴레이션을 정규화하는 목적에 관한 설명 중 가장 거리가 먼 것은?",
+        "option1": "정보의 갱신 이상이 생기지 않도록 한다.",
+        "option2": "정보의 보안을 목적으로 한다.",
+        "option3": "정보의 손실을 막는다.",
+        "option4": "정보의 중복을 막는다.",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "속성에 대한 아래의 설명에서 빈칸에 들어갈 것으로 올바른 것은?\n(ㄱ)은 엔터티를 식별할 수 있는 속성이고 (ㄴ)은 다른 엔터티의 관계에 포함되는 속성이다. 다른 엔터티의 관계에 포함되지 않는 속성을 (ㄷ)이라고 한다.",
+        "option1": "(ㄱ)기본키속성 - (ㄴ)외래키속성 - (ㄷ)일반속성",
+        "option2": "(ㄱ)외래키속성 - (ㄴ)기본키속성 - (ㄷ)파생속성",
+        "option3": "(ㄱ)파생속성 - (ㄴ)외래키속성 - (ㄷ)기본키속성",
+        "option4": "(ㄱ)일반속성 - (ㄴ)기본키속성 - (ㄷ)외래키속성",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "아래의 내용은 주식별자의 어떤 특징을 설명한 것인가?\n학생의 학번으로 고유한 구조를 표현할 수 있다. 하지만 ABC대학교의 학생 엔터티의 주식별자를 학번과 입학일자로 해서 잘못된 모델링을 했다.",
+        "option1": "유일성",
+        "option2": "최소성",
+        "option3": "불변성",
+        "option4": "존재성",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "주어진 테이블(TEST11)에 대해 아래의 SQL문을 수행한 결과로 적절한 것은?\n\n[TEST11]\nA 1\nB A 2\nC A 3\nD B 4\n\nSQL: SELECT COUNT(*) FROM TEST11 WHERE COL3 <> 3 START WITH COL3 = 4 CONNECT BY COL1 = PRIOR COL2;",
+        "option1": "0",
+        "option2": "1",
+        "option3": "2",
+        "option4": "3",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 보기 중 JOIN에 대한 설명으로 올바르지 않은 것은?",
+        "option1": "Nested Loop Join은 랜덤 엑세스가 발생한다.",
+        "option2": "Sort Merge Join은 정렬을 유발하여 조인하는 형태를 사용한다.",
+        "option3": "대용량 데이터를 조인할 후행 테이블에 인덱스가 없을 경우 Nested Loop Join이 유리하다.",
+        "option4": "Hash Join은 정렬 작업이 없어 정렬이 부담되는 대량 배치 작업에 유리하다.",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "테이블에 대한 권한을 부여하는 DCL 명령어는?",
+        "option1": "COMMIT",
+        "option2": "GRANT",
+        "option3": "REVOKE",
+        "option4": "ROLLBACK",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "다음 보기 중 SQL 명령어가 올바르지 않은 것은?",
+        "option1": "DDL : TRUNCATE",
+        "option2": "DDL : ALTER",
+        "option3": "DCL : REVOKE",
+        "option4": "DML : RENAME",
+        "option5": "",
+        "correctAnswer": "4"
+    },
+    {
+        "questionText": "다음 보기 중 주어진 테이블(TEST16)에 대해서 수행하였을 때 결과값이 다른 것은?",
+        "option1": "SELECT COUNT(3) FROM TEST16;",
+        "option2": "SELECT COUNT(MemberID) FROM TEST16;",
+        "option3": "SELECT COUNT(NULLIF(MemberID, NULL)) FROM TEST16;",
+        "option4": "SELECT COUNT(*) FROM TEST16 WHERE MemberID IS NOT NULL;",
+        "option5": "",
+        "correctAnswer": "1"
+    },
+    {
+        "questionText": "SELECT NVL(COUNT(*), 9999) FROM TABLE WHERE 1 = 2 의 결과값은?",
+        "option1": "9999",
+        "option2": "0",
+        "option3": "NULL",
+        "option4": "1",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "주어진 SQL문(TEST24)을 수행한 결과로 올바른 것은?\nINSERT VALUES(1)\nINSERT VALUES(2)\nCOMMIT;\nINSERT VALUES(3)\nSAVEPOINT SP;\nINSERT VALUES(4)\nROLLBACK TO SP;\nSELECT COUNT(*)",
+        "option1": "2",
+        "option2": "3",
+        "option3": "5",
+        "option4": "6",
+        "option5": "",
+        "correctAnswer": "2"
+    },
+    {
+        "questionText": "ORDERS 테이블에는 CUSTOMERS 테이블에 존재하지 않는 고객ID가 있다. SQL문에서 ( )에 들어갈 것으로 올바른 것은?",
+        "option1": "ㄱ: EXISTS, ㄴ: CUSTOMERS.ID = ORDERS.ID",
+        "option2": "ㄱ: EXISTS, ㄴ: CUSTOMERS.ID <> ORDERS.ID",
+        "option3": "ㄱ: NOT EXISTS, ㄴ: CUSTOMERS.ID = ORDERS.ID",
+        "option4": "ㄱ: NOT EXISTS, ㄴ: CUSTOMERS.ID <> ORDERS.ID",
+        "option5": "",
+        "correctAnswer": "3"
+    },
+    {
+        "questionText": "다음 중 아래 SQL문을 수행하였을 때 결과로 올바른 것은?\nSELECT NVL(SUM(COL1 + COL2), 0) FROM TEST32;",
+        "option1": "NULL",
+        "option2": "12",
+        "option3": "22",
+        "option4": "25",
+        "option5": "",
         "correctAnswer": "3"
     }
 ]
