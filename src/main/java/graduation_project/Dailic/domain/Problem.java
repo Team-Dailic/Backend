@@ -14,6 +14,7 @@ public class Problem {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private License license;
 
+    @Column(columnDefinition = "TEXT")
     private String questionText;
 
     private String option1;
@@ -24,6 +25,6 @@ public class Problem {
 
     private String correctAnswer;
 
-    // 해설 필드 추가
+    @Column(columnDefinition = "TEXT")
     private String solution;
 }
